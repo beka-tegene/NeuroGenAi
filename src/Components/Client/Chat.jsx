@@ -71,7 +71,7 @@ const Chat = () => {
       </Stack>
       <Stack
         sx={{
-          height: "88vh",
+          height: "80vh",
           overflowY: "scroll",
           overflowX: "hidden",
           "&::-webkit-scrollbar": {
