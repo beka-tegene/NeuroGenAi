@@ -1,6 +1,8 @@
 import { FileCopy, Mic, Send } from "@mui/icons-material";
 import { Card, IconButton, Paper, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
+import jwt_decode from "jwt-decode";
+import Cookies from "js-cookie";
 import axios from "axios";
 const Chat = () => {
   const [userMessages, setUserMessages] = useState([]);
@@ -41,12 +43,15 @@ const Chat = () => {
     const newUserMessages = [...userMessages];
     newUserMessages.push({ message: question, isQuestion: true }); // Store the question as an object with a flag
     setUserMessages(newUserMessages);
-
+    const token = Cookies.get("token");
+    const decodedToken = jwt_decode(token);
+    const userId = decodedToken.userId;
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/flask/medical",
+        "http://localhost:5000/api/v1/medical/medical-chat",
         {
           question: question,
+          userId
         }
       );
       const responseData = response.data.response;

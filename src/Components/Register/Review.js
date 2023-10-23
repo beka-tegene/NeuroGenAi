@@ -20,7 +20,6 @@ export default function Review({ formData }) {
   if (!formData) {
     return <div>Loading...</div>;
   }
-  console.log(formData);
 
   return (
     <React.Fragment>

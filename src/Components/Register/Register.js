@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 // import { fetchRegistration } from "../../features/registrationSlice";
 import logo from "../../Image/image 14.png";
 import { ImageListItem, Stack } from "@mui/material";
+import { setRegister } from "../../Utils/Store/AuthStore";
+import { useDispatch } from "react-redux";
 const steps = [
   "Personal Info",
   "Contact Info",
@@ -24,7 +26,7 @@ const steps = [
 ];
 
 export default function Register() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // const data = useSelector((state) => state.register.data);
@@ -48,11 +50,9 @@ export default function Register() {
       [id]: value,
     }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(fetchRegistration(formData));
-    navigate("/login");
+    dispatch(setRegister({data:{formData}}));
   };
 
   function getStepContent(step) {
@@ -114,11 +114,11 @@ export default function Register() {
           >
             Create Account
           </Typography>
-          <Typography variant="h6"  textAlign={"center"}>
+          <Typography variant="h6" textAlign={"center"}>
             Create an account so you can explore all the existing jobs
           </Typography>
         </Stack>
-        <Container component="main" maxWidth="md" >
+        <Container component="main" maxWidth="md">
           <Box
             sx={{
               display: "flex",

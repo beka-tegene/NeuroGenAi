@@ -10,10 +10,18 @@ import {
 import React, { useState } from "react";
 import logo from "../../Image/image 14.png";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../../Utils/Store/AuthStore";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 const Login = () => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(setLogin({ data: { email, password } }));
   };
   return (
     <Stack
@@ -22,6 +30,7 @@ const Login = () => {
       height={"100dvh"}
       gap={3}
     >
+      <ToastContainer />
       <Stack
         direction={"row"}
         alignItems={"center"}
@@ -79,6 +88,7 @@ const Login = () => {
             label="Email"
             variant="outlined"
             type="email"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </FormControl>
         <FormControl sx={{ width: "100%" }} size="small" required>
@@ -87,6 +97,7 @@ const Login = () => {
             label="Password"
             variant="outlined"
             type="password"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
         <Link

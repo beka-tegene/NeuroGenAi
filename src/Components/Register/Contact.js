@@ -7,7 +7,6 @@ import Box from "@mui/material/Box";
 export default function Contact({ onDataChange }) {
   const handleDataChange = (id, value) => {
     onDataChange({ id, value });
-    console.log(id, value);
   };
 
   return (

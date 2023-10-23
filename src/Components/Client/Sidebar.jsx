@@ -18,9 +18,11 @@ import {
   ExpandMore,
   Help,
   LiveHelp,
+  Logout,
   Settings,
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 const Sidebar = () => {
   const [open, setOpen] = React.useState(true);
   const [open2, setOpen2] = React.useState(true);
@@ -138,10 +140,7 @@ const Sidebar = () => {
                 <ListItemIcon>
                   <LiveHelp sx={{ color: "#FFFFFF" }} />
                 </ListItemIcon>
-                <ListItemText
-                  primary="FAQ's"
-                  sx={{ color: "#FFFFFF" }}
-                />
+                <ListItemText primary="FAQ's" sx={{ color: "#FFFFFF" }} />
               </ListItemButton>
               <ListItemButton
                 sx={{ pl: 4, "&:hover": { background: "#16C2D5" } }}
@@ -166,6 +165,19 @@ const Sidebar = () => {
               </ListItemButton>
             </List>
           </Collapse>
+          <ListItemButton
+            sx={{ pl: 4, "&:hover": { background: "#16C2D5" } }}
+            onClick={() => {
+              localStorage.clear();
+              Cookies.remove("token");
+              window.location.href = "/login";
+            }}
+          >
+            <ListItemIcon>
+              <Logout sx={{ color: "#FFFFFF" }} />
+            </ListItemIcon>
+            <ListItemText primary="Logout" sx={{ color: "#FFFFFF" }} />
+          </ListItemButton>
         </List>
       </Stack>
     </Stack>
