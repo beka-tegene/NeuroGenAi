@@ -327,432 +327,448 @@ const RiskAssessment = () => {
                       <div
                         style={{
                           position: "relative",
+                          marginTop: "50px",
                         }}
                       >
-                        <StyledTypo
-                          sx={{
-                            marginTop: isNotMobile ? "30px" : "0px",
-                            position: "absolute",
-                            top: "-105%",
-                            fontSize: "32px",
-                            fontStyle: "normal",
-                            fontWeight: "600",
-                            color: "#000",
-                          }}
-                        >
-                          Personal Information
-                        </StyledTypo>
                         <Box
-                          sx={{
-                            // position: "absolute",
-                            // top: "-35%",
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "40px",
-                          }}
+                          sx={
+                            {
+                              // position: "absolute",
+                              // bottom: "-400%",
+                            }
+                          }
                         >
-                          <Box
+                          <StyledTypo
                             sx={{
-                              display: "flex",
-                              justifyContent: "space-between",
+                              marginTop: isNotMobile ? "30px" : "0px",
+                              position: "absolute",
+                              bottom: "130%",
+                              fontSize: "32px",
+                              fontStyle: "normal",
+                              fontWeight: "600",
+                              color: "#000",
                             }}
                           >
-                            {/* one form input box start */}
+                            Personal Information
+                          </StyledTypo>
+                          <Box
+                            sx={{
+                              // position: "absolute",
+                              // top: "-35%",
+                              // position: "absolute",
+                              // top: "10%",
+                              marginTop: "-60%",
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: "40px",
+                            }}
+                          >
                             <Box
                               sx={{
-                                marginLeft: "20px",
                                 display: "flex",
-                                flexDirection: "column",
-                                gap: "2px",
+                                justifyContent: "space-between",
                               }}
                             >
-                              <label for="age">
+                              {/* one form input box start */}
+                              <Box
+                                sx={{
+                                  marginLeft: "20px",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "2px",
+                                }}
+                              >
+                                <label for="age">
+                                  <StyledTypo
+                                    sx={{
+                                      color: "#fff",
+                                    }}
+                                  >
+                                    Age
+                                  </StyledTypo>
+                                </label>
+                                <input
+                                  type="number"
+                                  id="age"
+                                  name="age"
+                                  value={age}
+                                  onChange={(e) => {
+                                    const value = e.target.value;
+                                    // Check if the input is a valid number and greater than or equal to 1
+                                    if (!isNaN(value) && Number(value) >= 1) {
+                                      setage(Number(value)); // Convert the valid input to a number and set it in state
+                                      setErrorMessage("");
+                                    } else {
+                                      // setAge(value);
+                                      setage("");
+                                      setErrorMessage(
+                                        "Please enter a valid age (1 or greater)."
+                                      );
+                                    }
+                                  }}
+                                  min="1"
+                                  style={{
+                                    border: "1px solid #0D66D0",
+                                    borderRadius: "5px",
+                                    padding: "8px",
+                                  }}
+                                  placeholder="Your Age"
+                                  fullWidth
+                                  required
+                                />
+                                {errorMessage && (
+                                  <p style={{ color: "red" }}>{errorMessage}</p>
+                                )}
+                              </Box>
+                              {/* one form input box end */}
+                              <Box
+                                sx={{
+                                  //   marginLeft: "20px",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "2px",
+                                  //   width:"90%"
+                                  mt: "20px",
+                                }}
+                              >
                                 <StyledTypo
                                   sx={{
                                     color: "#fff",
                                   }}
                                 >
-                                  Age
+                                  Family History of Stoke
                                 </StyledTypo>
-                              </label>
-                              <input
-                                type="number"
-                                id="age"
-                                name="age"
-                                value={age}
-                                onChange={(e) => {
-                                  const value = e.target.value;
-                                  // Check if the input is a valid number and greater than or equal to 1
-                                  if (!isNaN(value) && Number(value) >= 1) {
-                                    setage(Number(value)); // Convert the valid input to a number and set it in state
-                                    setErrorMessage("");
-                                  } else {
-                                    // setAge(value);
-                                    setage("");
-                                    setErrorMessage(
-                                      "Please enter a valid age (1 or greater)."
-                                    );
-                                  }
-                                }}
-                                min="1"
-                                style={{
-                                  border: "1px solid #0D66D0",
-                                  borderRadius: "5px",
-                                  padding: "8px",
-                                }}
-                                placeholder="Your Age"
-                                fullWidth
-                                required
-                              />
-                              {errorMessage && (
-                                <p style={{ color: "red" }}>{errorMessage}</p>
-                              )}
-                            </Box>
-                            {/* one form input box end */}
-                            <Box
-                              sx={{
-                                //   marginLeft: "20px",
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "2px",
-                                //   width:"90%"
-                                mt: "20px",
-                              }}
-                            >
-                              <StyledTypo
-                                sx={{
-                                  color: "#fff",
-                                }}
-                              >
-                                Family History of Stoke
-                              </StyledTypo>
 
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  // justifyContent: "space-between",
-                                  gap: "30px",
-                                }}
-                              >
                                 <Box
                                   sx={{
                                     display: "flex",
-                                    // flexDirection: "column",
                                     alignItems: "center",
+                                    // justifyContent: "space-between",
+                                    gap: "30px",
+                                  }}
+                                >
+                                  <Box
+                                    sx={{
+                                      display: "flex",
+                                      // flexDirection: "column",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <input
+                                      type="radio"
+                                      id="familyStrokeHistory_yes"
+                                      name="familyStrokeHistory"
+                                      value="familyStrokeHistory"
+                                      checked={familyStrokeHistory === "yes"}
+                                      onChange={() =>
+                                        setFamilyStrokeHistory("yes")
+                                      }
+                                    />
+                                    <label for="familyStrokeHistory_yes">
+                                      <StyledTypo sx={{ cursor: "pointer" }}>
+                                        Yes
+                                      </StyledTypo>
+                                    </label>
+                                  </Box>
+                                  <Box
+                                    sx={{
+                                      display: "flex",
+                                      // flexDirection: "column",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <input
+                                      type="radio"
+                                      id="familyStrokeHistory_no"
+                                      name="familyStrokeHistory"
+                                      value="no"
+                                      checked={familyStrokeHistory === "no"}
+                                      onChange={() =>
+                                        setFamilyStrokeHistory("no")
+                                      }
+                                    />
+                                    <label for="familyStrokeHistory_no">
+                                      <StyledTypo sx={{ cursor: "pointer" }}>
+                                        No
+                                      </StyledTypo>
+                                    </label>
+                                  </Box>
+                                </Box>
+                              </Box>
+                            </Box>
+                            <Box
+                              sx={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              {/* one form input box start */}
+                              <Box
+                                sx={{
+                                  marginLeft: "20px",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "2px",
+                                }}
+                              >
+                                <label for="gender">
+                                  <StyledTypo
+                                    sx={{
+                                      color: "#fff",
+                                    }}
+                                  >
+                                    Gender
+                                  </StyledTypo>
+                                </label>
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "2px",
                                   }}
                                 >
                                   <input
                                     type="radio"
-                                    id="familyStrokeHistory_yes"
-                                    name="familyStrokeHistory"
-                                    value="familyStrokeHistory"
-                                    checked={familyStrokeHistory === "yes"}
-                                    onChange={() =>
-                                      setFamilyStrokeHistory("yes")
-                                    }
+                                    id="male"
+                                    name="gender"
+                                    value="Male"
+                                    checked={gender === "Male"}
+                                    onChange={() => setgender("Male")}
                                   />
-                                  <label for="familyStrokeHistory_yes">
+                                  <label for="male">
+                                    <StyledTypo sx={{ cursor: "pointer" }}>
+                                      Male
+                                    </StyledTypo>
+                                  </label>
+
+                                  <input
+                                    type="radio"
+                                    id="female"
+                                    name="gender"
+                                    value="Female"
+                                    checked={gender === "Female"}
+                                    onChange={() => setgender("Female")}
+                                  />
+                                  <label for="female">
+                                    <StyledTypo sx={{ cursor: "pointer" }}>
+                                      Female
+                                    </StyledTypo>
+                                  </label>
+                                  <input
+                                    type="radio"
+                                    id="other"
+                                    name="gender"
+                                    value="Other"
+                                    checked={gender === "Other"}
+                                    onChange={() => setgender("Other")}
+                                  />
+                                  <label for="other">
+                                    <StyledTypo sx={{ cursor: "pointer" }}>
+                                      Other
+                                    </StyledTypo>
+                                  </label>
+                                </Box>
+                              </Box>
+                              <Box
+                                sx={{
+                                  marginLeft: "20px",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "2px",
+                                }}
+                              >
+                                <label for="ever_married">
+                                  <StyledTypo
+                                    sx={{
+                                      color: "#fff",
+                                    }}
+                                  >
+                                    Ever Married
+                                  </StyledTypo>
+                                </label>
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "8px",
+                                  }}
+                                >
+                                  <input
+                                    type="radio"
+                                    id="yes"
+                                    name="ever_married"
+                                    value="yes"
+                                    checked={ever_married === "yes"}
+                                    onChange={() => setever_married("yes")}
+                                  />
+                                  <label for="yes">
                                     <StyledTypo sx={{ cursor: "pointer" }}>
                                       Yes
                                     </StyledTypo>
                                   </label>
-                                </Box>
-                                <Box
-                                  sx={{
-                                    display: "flex",
-                                    // flexDirection: "column",
-                                    alignItems: "center",
-                                  }}
-                                >
+
                                   <input
                                     type="radio"
-                                    id="familyStrokeHistory_no"
-                                    name="familyStrokeHistory"
+                                    id="no"
+                                    name="ever_married"
                                     value="no"
-                                    checked={familyStrokeHistory === "no"}
-                                    onChange={() =>
-                                      setFamilyStrokeHistory("no")
-                                    }
+                                    checked={ever_married === "no"}
+                                    onChange={() => setever_married("no")}
                                   />
-                                  <label for="familyStrokeHistory_no">
+                                  <label for="no">
                                     <StyledTypo sx={{ cursor: "pointer" }}>
                                       No
                                     </StyledTypo>
                                   </label>
                                 </Box>
                               </Box>
-                            </Box>
-                          </Box>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            {/* one form input box start */}
-                            <Box
-                              sx={{
-                                marginLeft: "20px",
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "2px",
-                              }}
-                            >
-                              <label for="gender">
-                                <StyledTypo
-                                  sx={{
-                                    color: "#fff",
-                                  }}
-                                >
-                                  Gender
-                                </StyledTypo>
-                              </label>
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  gap: "2px",
-                                }}
-                              >
-                                <input
-                                  type="radio"
-                                  id="male"
-                                  name="gender"
-                                  value="Male"
-                                  checked={gender === "Male"}
-                                  onChange={() => setgender("Male")}
-                                />
-                                <label for="male">
-                                  <StyledTypo sx={{ cursor: "pointer" }}>
-                                    Male
-                                  </StyledTypo>
-                                </label>
-
-                                <input
-                                  type="radio"
-                                  id="female"
-                                  name="gender"
-                                  value="Female"
-                                  checked={gender === "Female"}
-                                  onChange={() => setgender("Female")}
-                                />
-                                <label for="female">
-                                  <StyledTypo sx={{ cursor: "pointer" }}>
-                                    Female
-                                  </StyledTypo>
-                                </label>
-                                <input
-                                  type="radio"
-                                  id="other"
-                                  name="gender"
-                                  value="Other"
-                                  checked={gender === "Other"}
-                                  onChange={() => setgender("Other")}
-                                />
-                                <label for="other">
-                                  <StyledTypo sx={{ cursor: "pointer" }}>
-                                    Other
-                                  </StyledTypo>
-                                </label>
-                              </Box>
+                              {/* one form input box end */}
                             </Box>
                             <Box
                               sx={{
-                                marginLeft: "20px",
                                 display: "flex",
-                                flexDirection: "column",
-                                gap: "2px",
-                              }}
-                            >
-                              <label for="ever_married">
-                                <StyledTypo
-                                  sx={{
-                                    color: "#fff",
-                                  }}
-                                >
-                                  Ever Married
-                                </StyledTypo>
-                              </label>
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  gap: "8px",
-                                }}
-                              >
-                                <input
-                                  type="radio"
-                                  id="yes"
-                                  name="ever_married"
-                                  value="yes"
-                                  checked={ever_married === "yes"}
-                                  onChange={() => setever_married("yes")}
-                                />
-                                <label for="yes">
-                                  <StyledTypo sx={{ cursor: "pointer" }}>
-                                    Yes
-                                  </StyledTypo>
-                                </label>
-
-                                <input
-                                  type="radio"
-                                  id="no"
-                                  name="ever_married"
-                                  value="no"
-                                  checked={ever_married === "no"}
-                                  onChange={() => setever_married("no")}
-                                />
-                                <label for="no">
-                                  <StyledTypo sx={{ cursor: "pointer" }}>
-                                    No
-                                  </StyledTypo>
-                                </label>
-                              </Box>
-                            </Box>
-                            {/* one form input box end */}
-                          </Box>
-                          <Box
-                            sx={{
-                              display: "flex",
-                              // justifyContent: "center",
-                              justifyContent: "space-between",
-                              alignItems: "center",
-                              // gap: "8%",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                display: "flex",
-                                flexDirection: "column",
+                                // justifyContent: "center",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                // gap: "8%",
                               }}
                             >
                               <Box
                                 sx={{
-                                  marginLeft: "20px",
-                                  width: "100%",
                                   display: "flex",
                                   flexDirection: "column",
-                                  gap: "2px",
                                 }}
                               >
-                                <label for="height">
-                                  <StyledTypo
-                                    sx={{
-                                      color: "#fff",
+                                <Box
+                                  sx={{
+                                    marginLeft: "20px",
+                                    width: "100%",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "2px",
+                                  }}
+                                >
+                                  <label for="height">
+                                    <StyledTypo
+                                      sx={{
+                                        color: "#fff",
+                                      }}
+                                    >
+                                      Height (in cm)
+                                    </StyledTypo>
+                                  </label>
+                                  <input
+                                    type="number"
+                                    id="height"
+                                    name="height"
+                                    value={height}
+                                    onChange={(e) => {
+                                      const value = e.target.value;
+                                      if (!isNaN(value) && Number(value) >= 0) {
+                                        setHeight(value);
+                                        setHeightErrorMessage(""); // Clear any previous Heighterror message
+                                      } else {
+                                        setHeight(""); // Reset the input to an empty string
+                                        setHeightErrorMessage(
+                                          "Please enter a valid height (50 cm or greater)."
+                                        );
+                                      }
                                     }}
-                                  >
-                                    Height (in cm)
-                                  </StyledTypo>
-                                </label>
-                                <input
-                                  type="number"
-                                  id="height"
-                                  name="height"
-                                  value={height}
-                                  onChange={(e) => {
-                                    const value = e.target.value;
-                                    if (!isNaN(value) && Number(value) >= 0) {
-                                      setHeight(value);
-                                      setHeightErrorMessage(""); // Clear any previous Heighterror message
-                                    } else {
-                                      setHeight(""); // Reset the input to an empty string
-                                      setHeightErrorMessage(
-                                        "Please enter a valid height (50 cm or greater)."
-                                      );
-                                    }
+                                    min="50"
+                                    style={{
+                                      width: "50%",
+                                      border: "1px solid #0D66D0",
+                                      borderRadius: "5px",
+                                      padding: "8px",
+                                    }}
+                                    placeholder="Your height"
+                                    fullWidth
+                                    required
+                                  />
+                                  {errorHeightMessage && (
+                                    <p style={{ color: "red" }}>
+                                      {errorHeightMessage}
+                                    </p>
+                                  )}
+                                </Box>
+                              </Box>
+                              {/** */}
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  //   marginLeft:"10px",
+                                }}
+                              >
+                                <Box
+                                  sx={{
+                                    // marginLeft: "20px",
+                                    display: "flex",
+                                    width: "100%",
+                                    flexDirection: "column",
+                                    gap: "2px",
                                   }}
-                                  min="50"
-                                  style={{
-                                    width: "50%",
-                                    border: "1px solid #0D66D0",
-                                    borderRadius: "5px",
-                                    padding: "8px",
-                                  }}
-                                  placeholder="Your height"
-                                  fullWidth
-                                  required
-                                />
-                                {errorHeightMessage && (
+                                >
+                                  <label for="weight">
+                                    <StyledTypo
+                                      sx={{
+                                        color: "#fff",
+                                      }}
+                                    >
+                                      Weight (in kg)
+                                    </StyledTypo>
+                                  </label>
+                                  <input
+                                    type="number"
+                                    id="weight"
+                                    name="weight"
+                                    value={weight}
+                                    onChange={(e) => {
+                                      const value = e.target.value;
+                                      if (!isNaN(value) && Number(value) >= 1) {
+                                        setWeight(value);
+                                        setWeightErrorMessage(""); // Clear any previous Weighterror message
+                                      } else {
+                                        setWeight(""); // Reset the input to an empty string
+                                        setWeightErrorMessage(
+                                          "Please Enter a valid Weight (20 Kg or greater)."
+                                        );
+                                      }
+                                    }}
+                                    min="20"
+                                    style={{
+                                      width: "50%",
+                                      border: "1px solid #0D66D0",
+                                      borderRadius: "5px",
+                                      padding: "8px",
+                                    }}
+                                    placeholder="Your weight"
+                                    fullWidth
+                                    required
+                                  />
+                                </Box>
+                                {errorWeightMessage && (
                                   <p style={{ color: "red" }}>
-                                    {errorHeightMessage}
+                                    {errorWeightMessage}
                                   </p>
                                 )}
                               </Box>
+                              {/* */}
                             </Box>
-                            {/** */}
-                            <Box
-                              sx={{
-                                display: "flex",
-                                flexDirection: "column",
-                                //   marginLeft:"10px",
-                              }}
-                            >
-                              <Box
-                                sx={{
-                                  // marginLeft: "20px",
-                                  display: "flex",
-                                  width: "100%",
-                                  flexDirection: "column",
-                                  gap: "2px",
-                                }}
-                              >
-                                <label for="weight">
-                                  <StyledTypo
-                                    sx={{
-                                      color: "#fff",
-                                    }}
-                                  >
-                                    Weight (in kg)
-                                  </StyledTypo>
-                                </label>
-                                <input
-                                  type="number"
-                                  id="weight"
-                                  name="weight"
-                                  value={weight}
-                                  onChange={(e) => {
-                                    const value = e.target.value;
-                                    if (!isNaN(value) && Number(value) >= 1) {
-                                      setWeight(value);
-                                      setWeightErrorMessage(""); // Clear any previous Weighterror message
-                                    } else {
-                                      setWeight(""); // Reset the input to an empty string
-                                      setWeightErrorMessage(
-                                        "Please Enter a valid Weight (20 Kg or greater)."
-                                      );
-                                    }
-                                  }}
-                                  min="20"
-                                  style={{
-                                    width: "50%",
-                                    border: "1px solid #0D66D0",
-                                    borderRadius: "5px",
-                                    padding: "8px",
-                                  }}
-                                  placeholder="Your weight"
-                                  fullWidth
-                                  required
-                                />
-                              </Box>
-                              {errorWeightMessage && (
-                                <p style={{ color: "red" }}>
-                                  {errorWeightMessage}
-                                </p>
-                              )}
-                            </Box>
-                            {/* */}
                           </Box>
                         </Box>
                       </div>
                     )}
 
                     {activeStep === 1 && (
-                      <div style={{ position: "relative" }}>
+                      <div style={{ position: "relative",
+                       marginTop:"-50%", }}>
                         <StyledTypo
                           sx={{
-                            marginTop: isNotMobile ? "35px" : "0px",
                             position: "absolute",
+                            bottom: "140%",
+                            marginTop: isNotMobile ? "35px" : "-10px",
+                            // position: "absolute",
                             top: "-36%",
                             fontSize: "32px",
                             fontStyle: "normal",
@@ -766,7 +782,7 @@ const RiskAssessment = () => {
                           sx={{
                             display: "flex",
                             justifyContent: "center",
-                            alignContent: "center",
+                            alignItems: "center",
                             position: "relative",
                           }}
                         >
@@ -805,7 +821,7 @@ const RiskAssessment = () => {
                               // position: "absolute",
                               // top:"10%",
                               width: "100%",
-                              marginTop: "16px",
+                              // marginTop: "16px",
                               marginLeft: "20px",
                               display: "flex",
                               flexDirection: "column",
@@ -1177,13 +1193,17 @@ const RiskAssessment = () => {
                       <Box
                         sx={{
                           position: "relative",
+                          // diplay:"flex",
+                          // flexDirection:"column",
+                          // gap:"200px"
+                          // marginTop:"-40px"
                         }}
                       >
                         <StyledTypo
                           sx={{
                             marginTop: isNotMobile ? "40px" : "0px",
                             position: "absolute",
-                            top: "-46%",
+                            top: "-86%",
                             fontSize: "32px",
                             fontStyle: "normal",
                             fontWeight: "600",
@@ -1193,8 +1213,14 @@ const RiskAssessment = () => {
                           Health and Life Style
                         </StyledTypo>
                         {/** */}
+                        <Box sx={{
+                          marginBottom: "140px",
+                        }}>
                         <Box
                           sx={{
+                            //  position: "absolute",
+                            // bottom: "-20%",
+                            // marginTop:"-60px",
                             display: "flex",
                             justifyContent: "space-between",
                             marginBottom: "40px",
@@ -1451,6 +1477,7 @@ const RiskAssessment = () => {
                               </label>
                             </Box>
                           </Box>
+                        </Box>
                         </Box>
                       </Box>
                     )}
