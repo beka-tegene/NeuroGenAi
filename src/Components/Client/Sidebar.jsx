@@ -10,7 +10,16 @@ import {
 } from "@mui/material";
 import React from "react";
 import logo from "../../Image/image 14.png";
-import { Assessment, Chat, Dashboard, ExpandLess, ExpandMore, Help, Settings } from "@mui/icons-material";
+import {
+  Assessment,
+  Chat,
+  Dashboard,
+  ExpandLess,
+  ExpandMore,
+  Help,
+  LiveHelp,
+  Settings,
+} from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
   const [open, setOpen] = React.useState(true);
@@ -88,9 +97,7 @@ const Sidebar = () => {
               </ListItemButton>
               <ListItemButton
                 sx={{ pl: 4, "&:hover": { background: "#16C2D5" } }}
-                onClick={() =>
-                  navigate("/risk-assessment")
-                }
+                onClick={() => navigate("/risk-assessment")}
               >
                 <ListItemIcon>
                   <Assessment sx={{ color: "#FFFFFF" }} />
@@ -124,6 +131,18 @@ const Sidebar = () => {
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
+              <ListItemButton
+                sx={{ pl: 4, "&:hover": { background: "#16C2D5" } }}
+                onClick={() => navigate("/help-guide")}
+              >
+                <ListItemIcon>
+                  <LiveHelp sx={{ color: "#FFFFFF" }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary="FAQ's"
+                  sx={{ color: "#FFFFFF" }}
+                />
+              </ListItemButton>
               <ListItemButton
                 sx={{ pl: 4, "&:hover": { background: "#16C2D5" } }}
                 onClick={() => navigate("/help-guide")}
