@@ -1,14 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-// import { watchFetchGeez } from "./Middleware/Middleware";
-// const sagaMiddleware = createSagaMiddleware();
+import { watchFetchNeuro } from "./Middleware/Middleware";
+import AuthStore from "./Store/AuthStore";
+const sagaMiddleware = createSagaMiddleware();
 
 const Store = configureStore({
   reducer: {
+    AuthStore: AuthStore,
   },
-//   middleware: [sagaMiddleware],
+  middleware: [sagaMiddleware],
 });
 
-// sagaMiddleware.run(watchFetchGeez);
+sagaMiddleware.run(watchFetchNeuro);
 
 export default Store;
