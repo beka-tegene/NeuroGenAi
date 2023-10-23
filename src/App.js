@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Landing from "./Pages/Landing";
+import AuthLogin from "./Pages/AuthLogin";
+import AuthRegister from "./Pages/AuthRegister";
+import DashboardUser from "./Pages/DashboardUser";
+import RiskUser from "./Pages/RiskUser";
+import ChatUser from "./Pages/ChatUser";
+import HelpUser from "./Pages/HelpUser";
+import SettingUser from "./Pages/SettingUser";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/login" element={<AuthLogin />} />
+      <Route path="/register" element={<AuthRegister />} />
+      <Route path="/dashboard" element={<DashboardUser />} />
+      <Route path="/risk-assessment" element={<RiskUser />} />
+      <Route path="/chat-bot" element={<ChatUser />} />
+      <Route path="/help-guide" element={<HelpUser />} />
+      <Route path="/setting" element={<SettingUser />} />
+    </Routes>
   );
 }
 
