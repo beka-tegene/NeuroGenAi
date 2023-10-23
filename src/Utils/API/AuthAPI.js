@@ -4,14 +4,24 @@ import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
 
 export const SignUp = async (data) => {
-  // email, password
-  const useData = await axios.post("http://localhost:5001/auth/signup", data, {
+  //     email,
+    // password,
+    // first_name,
+    // last_name,
+    // date_of_birth,
+    // phone_number,
+    // address,
+    // city,
+    // age, 
+    // gender,
+    // country,
+  const useData = await axios.post("localhost:5000/api/v1/auth/register", data, {
     headers: {
       "Content-Type": "application/json",
     },
   });
   console.log(useData);
-  if (useData.status === 200) {
+  if (useData.status === 201) {
     window.location.href = "/login";
   } else {
     window.location.href = "/register";
@@ -23,7 +33,7 @@ export const Login = async (data) => {
     console.log(data);
     //email, password
     const response = await axios.post(
-      "http://localhost:5001/auth/login",
+      "localhost:5000/api/v1/auth/login",
       data,
       {
         headers: {
@@ -32,7 +42,7 @@ export const Login = async (data) => {
       }
     );
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       const { token } = response.data;
       const decodedToken = jwt_decode(token);
       localStorage.setItem("token", token);
@@ -55,21 +65,3 @@ export const Login = async (data) => {
   }
 };
 
-export const forgotPassword = async (data) => {
-  // email
-  const useData = await axios.post(
-    "http://localhost:5001/auth/forgotPassword",
-    data,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  console.log(useData);
-  if (useData.status === 200) {
-    window.location.href = "/";
-  } else {
-    window.location.href = "/register";
-  }
-};
