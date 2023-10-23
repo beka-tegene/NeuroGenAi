@@ -333,7 +333,7 @@ const RiskAssessment = () => {
                           sx={{
                             marginTop: isNotMobile ? "30px" : "0px",
                             position: "absolute",
-                            top: "-35%",
+                            top: "-105%",
                             fontSize: "32px",
                             fontStyle: "normal",
                             fontWeight: "600",
@@ -344,6 +344,8 @@ const RiskAssessment = () => {
                         </StyledTypo>
                         <Box
                           sx={{
+                            // position: "absolute",
+                            // top: "-35%",
                             display: "flex",
                             flexDirection: "column",
                             gap: "40px",
