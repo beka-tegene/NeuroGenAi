@@ -125,95 +125,66 @@ const RiskAssessment = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log({
-    //   exposure_percent: 40,
-    //   weight: weight,
-    //   height: height,
-    //   history_of_stroke: strokeHistory,
-    //   family_history_of_stroke: familyStrokeHistory,
-    //   physical_activity_level: physicalActivity,
-    //   diet: diet,
-    //   systolic_blood_pressure: systolicBp,
-    //   diastolic_blood_pressure: diastolicBp,
-    //   data: [
-    //     {
-    //       age,
-    //       hypertension,
-    //       heart_disease,
-    //       ever_married,
-    //       work_type: workType,
-    //       Residence_type: residence,
-    //       avg_glucose_level: glucose,
-    //       bmi,
-    //       smoking_status: smoking,
-    //       gender,
-    //     },
-    //   ],
-    // });
     if (isFormStepEnd) {
       try {
-        const response = await axios.post(
-          "http://localhost:5000/api/v1/flask/getStrokeRecommendations",
-          {
-            exposure_percent: 40,
-            weight: weight,
-            height: height,
-            history_of_stroke: strokeHistory,
-            family_history_of_stroke: familyStrokeHistory,
-            physical_activity_level: physicalActivity,
-            diet: diet,
-            systolic_blood_pressure: systolicBp,
-            diastolic_blood_pressure: diastolicBp,
-            data: [
-              {
-                age,
-                hypertension,
-                heart_disease,
-                ever_married,
-                work_type: workType,
-                Residence_type: residence,
-                avg_glucose_level: glucose,
-                bmi,
-                smoking_status: smoking,
-                gender,
-              },
-            ],
-          }
-        );
-        const responses = await axios.post(
-          "http://localhost:5000/api/v1/flask/predict_stroke_risk",
-          {
-            data: [
-              {
-                age,
-                hypertension,
-                heart_disease,
-                ever_married,
-                work_type: workType,
-                Residence_type: residence,
-                avg_glucose_level: glucose,
-                bmi,
-                smoking_status: smoking,
-                gender,
-              },
-            ],
-          }
-        );
-
-        console.log("reponse", response.data.recommendations);
-        console.log("reponses", responses);
-
+        // const response = await axios.post(
+        //   "http://localhost:5000/api/v1/flask/getStrokeRecommendations",
+        //   {
+        //     exposure_percent: 40,
+        //     weight: weight,
+        //     height: height,
+        //     history_of_stroke: strokeHistory,
+        //     family_history_of_stroke: familyStrokeHistory,
+        //     physical_activity_level: physicalActivity,
+        //     diet: diet,
+        //     systolic_blood_pressure: systolicBp,
+        //     diastolic_blood_pressure: diastolicBp,
+        //     data: [
+        //       {
+        //         age,
+        //         hypertension,
+        //         heart_disease,
+        //         ever_married,
+        //         work_type: workType,
+        //         Residence_type: residence,
+        //         avg_glucose_level: glucose,
+        //         bmi,
+        //         smoking_status: smoking,
+        //         gender,
+        //       },
+        //     ],
+        //   }
+        // );
+        // const responses = await axios.post(
+        //   "http://localhost:5000/api/v1/flask/predict_stroke_risk",
+        //   {
+        //     data: [
+        //       {
+        //         age,
+        //         hypertension,
+        //         heart_disease,
+        //         ever_married,
+        //         work_type: workType,
+        //         Residence_type: residence,
+        //         avg_glucose_level: glucose,
+        //         bmi,
+        //         smoking_status: smoking,
+        //         gender,
+        //       },
+        //     ],
+        //   }
+        // );
+        // console.log("reponse", response.data.recommendations);
+        // console.log("reponses", responses);
         // responses = response.request.statusText;
-
         // Interpretation = responses.data.Interpretation;
-
-        setAdvice(responses.data.Advice);
-        const Predicted_no = `${responses.data["Logistic Regression Probability"]}`;
-        const roundedNumber = Predicted_no * 100; // Rounds to 2 decimal places
-        const formattedNumber = roundedNumber.toFixed(2);
-        setPrediction(formattedNumber);
-        setInterpretation(responses.data.Interpretation);
-        console.log("Advice", Advice);
+        // setAdvice(responses.data.Advice);
+        // const Predicted_no = `${responses.data["Logistic Regression Probability"]}`;
+        // const roundedNumber = Predicted_no * 100; // Rounds to 2 decimal places
+        // const formattedNumber = roundedNumber.toFixed(2);
+        // setPrediction(formattedNumber);
+        // setInterpretation(responses.data.Interpretation);
+        // console.log("Advice", Advice);
         // props.Advice(Advice);
         // props.Logistic(Logistic);
         // props.Interpretation(Interpretation);
@@ -761,8 +732,7 @@ const RiskAssessment = () => {
                     )}
 
                     {activeStep === 1 && (
-                      <div style={{ position: "relative",
-                       marginTop:"-50%", }}>
+                      <div style={{ position: "relative", marginTop: "-50%" }}>
                         <StyledTypo
                           sx={{
                             position: "absolute",
@@ -1213,142 +1183,211 @@ const RiskAssessment = () => {
                           Health and Life Style
                         </StyledTypo>
                         {/** */}
-                        <Box sx={{
-                          marginBottom: "140px",
-                        }}>
                         <Box
                           sx={{
-                            //  position: "absolute",
-                            // bottom: "-20%",
-                            // marginTop:"-60px",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            marginBottom: "40px",
+                            marginBottom: "140px",
                           }}
                         >
                           <Box
                             sx={{
-                              width: "100%",
-                              marginLeft: "20px",
+                              //  position: "absolute",
+                              // bottom: "-20%",
+                              // marginTop:"-60px",
                               display: "flex",
-                              flexDirection: "column",
-                              gap: "2px",
+                              justifyContent: "space-between",
+                              marginBottom: "40px",
                             }}
                           >
-                            <StyledTypo
+                            <Box
                               sx={{
-                                color: "#fff",
+                                width: "100%",
+                                marginLeft: "20px",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2px",
                               }}
                             >
-                              Systolic Blood Pressure
-                            </StyledTypo>
+                              <StyledTypo
+                                sx={{
+                                  color: "#fff",
+                                }}
+                              >
+                                Systolic Blood Pressure
+                              </StyledTypo>
 
-                            <input
-                              type="number"
-                              id="systolic_blood_pressure"
-                              name="systolic"
-                              value={systolicBp}
-                              onChange={(e) => setSystolicBp(e.target.value)}
-                              min="90"
-                              max="140"
-                              style={{
-                                border: "1px solid #0D66D0",
-                                borderRadius: "5px",
-                                padding: "8px",
+                              <input
+                                type="number"
+                                id="systolic_blood_pressure"
+                                name="systolic"
+                                value={systolicBp}
+                                onChange={(e) => setSystolicBp(e.target.value)}
+                                min="90"
+                                max="140"
+                                style={{
+                                  border: "1px solid #0D66D0",
+                                  borderRadius: "5px",
+                                  padding: "8px",
+                                }}
+                                placeholder="90 - 120"
+                                fullWidth
+                                required
+                              />
+                            </Box>
+                            <Box
+                              sx={{
+                                width: "100%",
+                                marginLeft: "20px",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2px",
                               }}
-                              placeholder="90 - 120"
-                              fullWidth
-                              required
-                            />
+                            >
+                              <StyledTypo
+                                sx={{
+                                  color: "#fff",
+                                }}
+                              >
+                                Diastolic Blood Pressure
+                              </StyledTypo>
+
+                              <input
+                                type="number"
+                                id="diastolic_blood_pressure"
+                                name="diastolic"
+                                value={diastolicBp}
+                                onChange={(e) => setDiastolicBp(e.target.value)}
+                                min="90"
+                                max="140"
+                                style={{
+                                  border: "1px solid #0D66D0",
+                                  borderRadius: "5px",
+                                  padding: "8px",
+                                }}
+                                placeholder="90 - 120"
+                                fullWidth
+                                required
+                              />
+                            </Box>
                           </Box>
                           <Box
                             sx={{
-                              width: "100%",
-                              marginLeft: "20px",
                               display: "flex",
-                              flexDirection: "column",
-                              gap: "2px",
+                              justifyContent: "space-between",
+                              gap: "5%",
                             }}
                           >
-                            <StyledTypo
+                            <Box
+                              flex={1}
                               sx={{
-                                color: "#fff",
+                                width: "100%",
+                                marginLeft: "20px",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2px",
                               }}
                             >
-                              Diastolic Blood Pressure
-                            </StyledTypo>
+                              <StyledTypo
+                                sx={{
+                                  color: "#fff",
+                                }}
+                              >
+                                Average Gluscose Level
+                              </StyledTypo>
 
-                            <input
-                              type="number"
-                              id="diastolic_blood_pressure"
-                              name="diastolic"
-                              value={diastolicBp}
-                              onChange={(e) => setDiastolicBp(e.target.value)}
-                              min="90"
-                              max="140"
-                              style={{
-                                border: "1px solid #0D66D0",
-                                borderRadius: "5px",
-                                padding: "8px",
-                              }}
-                              placeholder="90 - 120"
-                              fullWidth
-                              required
-                            />
-                          </Box>
-                        </Box>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            gap: "5%",
-                          }}
-                        >
-                          <Box
-                            flex={1}
-                            sx={{
-                              width: "100%",
-                              marginLeft: "20px",
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: "2px",
-                            }}
-                          >
-                            <StyledTypo
+                              <input
+                                type="number"
+                                id="gluscose"
+                                name="glucose"
+                                value={glucose}
+                                onChange={(e) => setGlucose(e.target.value)}
+                                min="90"
+                                max="140"
+                                style={{
+                                  border: "1px solid #0D66D0",
+                                  borderRadius: "5px",
+                                  padding: "8px",
+                                }}
+                                placeholder="90 - 120"
+                                fullWidth
+                                required
+                              />
+                            </Box>
+                            <Box
+                              flex={1}
                               sx={{
-                                color: "#fff",
+                                //   marginLeft: "20px",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "2px",
+                                //   width:"90%"
+                                mt: "20px",
                               }}
                             >
-                              Average Gluscose Level
-                            </StyledTypo>
+                              <StyledTypo
+                                sx={{
+                                  color: "#fff",
+                                }}
+                              >
+                                Hypertension
+                              </StyledTypo>
 
-                            <input
-                              type="number"
-                              id="gluscose"
-                              name="glucose"
-                              value={glucose}
-                              onChange={(e) => setGlucose(e.target.value)}
-                              min="90"
-                              max="140"
-                              style={{
-                                border: "1px solid #0D66D0",
-                                borderRadius: "5px",
-                                padding: "8px",
-                              }}
-                              placeholder="90 - 120"
-                              fullWidth
-                              required
-                            />
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  // justifyContent: "space-between",
+                                  gap: "30px",
+                                }}
+                              >
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    // flexDirection: "column",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <input
+                                    type="radio"
+                                    id="hypertension_yes"
+                                    name="hypertension_yes"
+                                    value="hypertension"
+                                    checked={hypertension === "yes"}
+                                    onChange={() => sethypertension("yes")}
+                                  />
+                                  <label for="hypertension_yes">
+                                    <StyledTypo sx={{ cursor: "pointer" }}>
+                                      Yes
+                                    </StyledTypo>
+                                  </label>
+                                </Box>
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    // flexDirection: "column",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <input
+                                    type="radio"
+                                    id="hypertension"
+                                    name="hypertension"
+                                    value="no"
+                                    checked={hypertension === "no"}
+                                    onChange={() => sethypertension("no")}
+                                  />
+                                  <label for="hypertension">
+                                    <StyledTypo sx={{ cursor: "pointer" }}>
+                                      No
+                                    </StyledTypo>
+                                  </label>
+                                </Box>
+                              </Box>
+                            </Box>
                           </Box>
+                          {/** */}
                           <Box
-                            flex={1}
                             sx={{
-                              //   marginLeft: "20px",
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: "2px",
-                              //   width:"90%"
-                              mt: "20px",
+                              margin: "20px",
                             }}
                           >
                             <StyledTypo
@@ -1356,7 +1395,7 @@ const RiskAssessment = () => {
                                 color: "#fff",
                               }}
                             >
-                              Hypertension
+                              Heart Deases
                             </StyledTypo>
 
                             <Box
@@ -1376,13 +1415,13 @@ const RiskAssessment = () => {
                               >
                                 <input
                                   type="radio"
-                                  id="hypertension_yes"
-                                  name="hypertension_yes"
-                                  value="hypertension"
-                                  checked={hypertension === "yes"}
-                                  onChange={() => sethypertension("yes")}
+                                  id="yes"
+                                  name="heart_deases"
+                                  value="heart_deases"
+                                  checked={heart_disease === "yes"}
+                                  onChange={() => setheart_disease("yes")}
                                 />
-                                <label for="hypertension_yes">
+                                <label for="yes">
                                   <StyledTypo sx={{ cursor: "pointer" }}>
                                     Yes
                                   </StyledTypo>
@@ -1397,13 +1436,13 @@ const RiskAssessment = () => {
                               >
                                 <input
                                   type="radio"
-                                  id="hypertension"
-                                  name="hypertension"
+                                  id="no"
+                                  name="heart_disease"
                                   value="no"
-                                  checked={hypertension === "no"}
-                                  onChange={() => sethypertension("no")}
+                                  checked={heart_disease === "no"}
+                                  onChange={() => setheart_disease("no")}
                                 />
-                                <label for="hypertension">
+                                <label for="no">
                                   <StyledTypo sx={{ cursor: "pointer" }}>
                                     No
                                   </StyledTypo>
@@ -1411,73 +1450,6 @@ const RiskAssessment = () => {
                               </Box>
                             </Box>
                           </Box>
-                        </Box>
-                        {/** */}
-                        <Box
-                          sx={{
-                            margin: "20px",
-                          }}
-                        >
-                          <StyledTypo
-                            sx={{
-                              color: "#fff",
-                            }}
-                          >
-                            Heart Deases
-                          </StyledTypo>
-
-                          <Box
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              // justifyContent: "space-between",
-                              gap: "30px",
-                            }}
-                          >
-                            <Box
-                              sx={{
-                                display: "flex",
-                                // flexDirection: "column",
-                                alignItems: "center",
-                              }}
-                            >
-                              <input
-                                type="radio"
-                                id="yes"
-                                name="heart_deases"
-                                value="heart_deases"
-                                checked={heart_disease === "yes"}
-                                onChange={() => setheart_disease("yes")}
-                              />
-                              <label for="yes">
-                                <StyledTypo sx={{ cursor: "pointer" }}>
-                                  Yes
-                                </StyledTypo>
-                              </label>
-                            </Box>
-                            <Box
-                              sx={{
-                                display: "flex",
-                                // flexDirection: "column",
-                                alignItems: "center",
-                              }}
-                            >
-                              <input
-                                type="radio"
-                                id="no"
-                                name="heart_disease"
-                                value="no"
-                                checked={heart_disease === "no"}
-                                onChange={() => setheart_disease("no")}
-                              />
-                              <label for="no">
-                                <StyledTypo sx={{ cursor: "pointer" }}>
-                                  No
-                                </StyledTypo>
-                              </label>
-                            </Box>
-                          </Box>
-                        </Box>
                         </Box>
                       </Box>
                     )}
