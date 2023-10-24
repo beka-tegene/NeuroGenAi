@@ -41,7 +41,7 @@ const RiskAssessment = () => {
   const [weight, setWeight] = useState(null);
   const [bmi, setBmi] = useState(null);
   const [physicalActivity, setPhysicalActivity] = useState("");
-  const [diet, setDiet] = useState("");
+  // const [diet, setDiet] = useState("");
   const [smoking, setSmoking] = useState("");
   const [workType, setWorkType] = useState("");
   const [residence, setResidence] = useState("");
@@ -52,9 +52,10 @@ const RiskAssessment = () => {
   const [strokeHistory, setStrokeHistory] = useState("");
   const [familyStrokeHistory, setFamilyStrokeHistory] = useState("");
   const [Advice, setAdvice] = useState("");
-  const [prediction, setPrediction] = useState("");
+  const [Prediction, setPrediction] = useState("");
   const [Interpretation, setInterpretation] = useState("");
-
+  const [Diet, setDiet] = useState("");
+  
   const [hypertension, sethypertension] = useState(null);
   const [heart_disease, setheart_disease] = useState(null);
 
@@ -86,108 +87,129 @@ const RiskAssessment = () => {
     }
   }, [height, weight]);
 
-  const messageArray = `
-**Diet Plan**
+//   const messageArray = `
+// **Diet Plan**
 
-  Based on your risk factors, you should follow a diet that is low in saturated fat, cholesterol, and sodium. You should also limit your intake of sugary drinks and processed foods. Instead, focus on eating plenty of fruits, vegetables, and whole grains.
+//   Based on your risk factors, you should follow a diet that is low in saturated fat, cholesterol, and sodium. You should also limit your intake of sugary drinks and processed foods. Instead, focus on eating plenty of fruits, vegetables, and whole grains.
 
-**Exercise Plan**
+// **Exercise Plan**
 
-  Regular exercise is an important part of stroke prevention. You should aim for at least 30 minutes of moderate-intensity exercise most days of the week. Examples of moderate-intensity exercises include walking, running, swimming, and biking.
+//   Regular exercise is an important part of stroke prevention. You should aim for at least 30 minutes of moderate-intensity exercise most days of the week. Examples of moderate-intensity exercises include walking, running, swimming, and biking.
 
-**Other Recommendations**
+// **Other Recommendations**
 
-  Maintain a healthy weight.
-  If you smoke, quit.
-  Limit your alcohol intake.
-  Get regular checkups with your doctor.
-`;
-  useEffect(() => {
-    // Define the interval time in milliseconds
-    const interval = 10; // 1000ms = 1 second
+//   Maintain a healthy weight.
+//   If you smoke, quit.
+//   Limit your alcohol intake.
+//   Get regular checkups with your doctor.
+// `;
+  // useEffect(() => {
+  //   // Define the interval time in milliseconds
+  //   const interval = 10; // 1000ms = 1 second
 
-    if (currentMessage < messageArray.length) {
-      // Use setTimeout to add a new message to the list after the interval
-      const timer = setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          messageArray[currentMessage],
-        ]);
-        setCurrentMessage(currentMessage + 1);
-      }, interval);
+  //   if (currentMessage < messageArray.length) {
+  //     // Use setTimeout to add a new message to the list after the interval
+  //     const timer = setTimeout(() => {
+  //       setMessages((prevMessages) => [
+  //         ...prevMessages,
+  //         messageArray[currentMessage],
+  //       ]);
+  //       setCurrentMessage(currentMessage + 1);
+  //     }, interval);
 
-      // Clean up the timer when the component unmounts or when the message array is exhausted
-      return () => clearTimeout(timer);
-    }
-  }, [currentMessage, messageArray]);
+  //     // Clean up the timer when the component unmounts or when the message array is exhausted
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [currentMessage, messageArray]);
 
   const isFormStepEnd = activeStep === steps.length - 3;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(  {
+      exposure_percent: 40,
+      weight: weight,
+      height: height,
+      history_of_stroke: strokeHistory,
+      family_history_of_stroke: familyStrokeHistory,
+      physical_activity_level: physicalActivity,
+      diet: Diet,
+      systolic_blood_pressure: systolicBp,
+      diastolic_blood_pressure: diastolicBp,
+      data: [
+        {
+          age,
+          hypertension,
+          heart_disease,
+          ever_married,
+          work_type: workType,
+          Residence_type: residence,
+          avg_glucose_level: glucose,
+          bmi,
+          smoking_status: smoking,
+          gender,
+        },
+      ],
+    });
     if (isFormStepEnd) {
       try {
-        // const response = await axios.post(
-        //   "http://localhost:5000/api/v1/flask/getStrokeRecommendations",
-        //   {
-        //     exposure_percent: 40,
-        //     weight: weight,
-        //     height: height,
-        //     history_of_stroke: strokeHistory,
-        //     family_history_of_stroke: familyStrokeHistory,
-        //     physical_activity_level: physicalActivity,
-        //     diet: diet,
-        //     systolic_blood_pressure: systolicBp,
-        //     diastolic_blood_pressure: diastolicBp,
-        //     data: [
-        //       {
-        //         age,
-        //         hypertension,
-        //         heart_disease,
-        //         ever_married,
-        //         work_type: workType,
-        //         Residence_type: residence,
-        //         avg_glucose_level: glucose,
-        //         bmi,
-        //         smoking_status: smoking,
-        //         gender,
-        //       },
-        //     ],
-        //   }
-        // );
-        // const responses = await axios.post(
-        //   "http://localhost:5000/api/v1/flask/predict_stroke_risk",
-        //   {
-        //     data: [
-        //       {
-        //         age,
-        //         hypertension,
-        //         heart_disease,
-        //         ever_married,
-        //         work_type: workType,
-        //         Residence_type: residence,
-        //         avg_glucose_level: glucose,
-        //         bmi,
-        //         smoking_status: smoking,
-        //         gender,
-        //       },
-        //     ],
-        //   }
-        // );
-        // console.log("reponse", response.data.recommendations);
-        // console.log("reponses", responses);
-        // responses = response.request.statusText;
-        // Interpretation = responses.data.Interpretation;
-        // setAdvice(responses.data.Advice);
-        // const Predicted_no = `${responses.data["Logistic Regression Probability"]}`;
-        // const roundedNumber = Predicted_no * 100; // Rounds to 2 decimal places
-        // const formattedNumber = roundedNumber.toFixed(2);
-        // setPrediction(formattedNumber);
-        // setInterpretation(responses.data.Interpretation);
-        // console.log("Advice", Advice);
-        // props.Advice(Advice);
-        // props.Logistic(Logistic);
-        // props.Interpretation(Interpretation);
+        const response = await axios.post(
+          "http://localhost:5000/api/v1/predict/getStrokeRecommendations",
+          {
+            exposure_percent: 40,
+            weight: weight,
+            height: height,
+            history_of_stroke: strokeHistory,
+            family_history_of_stroke: familyStrokeHistory,
+            physical_activity_level: physicalActivity,
+            diet: Diet,
+            systolic_blood_pressure: systolicBp,
+            diastolic_blood_pressure: diastolicBp,
+            data: [
+              {
+                age,
+                hypertension,
+                heart_disease,
+                ever_married,
+                work_type: workType,
+                Residence_type: residence,
+                avg_glucose_level: glucose,
+                bmi,
+                smoking_status: smoking,
+                gender,
+              },
+            ],
+          }
+        );
+        const responses = await axios.post(
+          "http://localhost:5000/api/v1/predict/predict_stroke_risk",
+          {
+            data: [
+              {
+                age,
+                hypertension,
+                heart_disease,
+                ever_married,
+                work_type: workType,
+                Residence_type: residence,
+                avg_glucose_level: glucose,
+                bmi,
+                smoking_status: smoking,
+                gender,
+              },
+            ],
+          }
+        );
+        console.log("reponse", response);
+        console.log("reponses", responses);
+      
+        const Predicted = `${responses.data["Logistic Regression Probability"]}`;
+        const roundedNumber = (Predicted)*100; // Rounds to 2 decimal places
+        const formattedNumber = roundedNumber.toFixed(2);
+        setAdvice(responses.data.Advice);
+        setDiet(response.data.recommendations)
+        setPrediction(formattedNumber);
+        setInterpretation(responses.data.Interpretation);
       } catch (err) {
         console.log("An error occurred");
       }
@@ -197,12 +219,12 @@ const RiskAssessment = () => {
     }
   };
 
-  const sections = messageArray.split(
-    /\n(?=\s*(Diet Plan|Exercise Plan|Other Recommendations))/
-  );
-  // console.log(sections[1]);
-  // Extract and store each section in variables
-  const dietPlan = sections[0].trim();
+  // const sections = messageArray.split(
+  //   /\n(?=\s*(Diet Plan|Exercise Plan|Other Recommendations))/
+  // );
+  // // console.log(sections[1]);
+  // // Extract and store each section in variables
+  // const dietPlan = sections[0].trim();
   return (
     <Stack sx={{ width: "84%" }}>
       <Stack
@@ -228,7 +250,7 @@ const RiskAssessment = () => {
             position: "relative",
             display: "flex",
             background:
-              "linear-gradient(212deg, #0094FF 2.11%, rgba(34, 44, 101, 0.00) 260.14%)",
+              "#192655",
             backgroundSize: "100%",
             backgroundRepeat: "no-repeat",
             height: "100vh",
@@ -313,7 +335,7 @@ const RiskAssessment = () => {
                             sx={{
                               marginTop: isNotMobile ? "30px" : "0px",
                               position: "absolute",
-                              bottom: "130%",
+                              bottom: "96%",
                               fontSize: "32px",
                               fontStyle: "normal",
                               fontWeight: "600",
@@ -810,7 +832,7 @@ const RiskAssessment = () => {
                               type="text"
                               id="diet"
                               name="diet"
-                              value={diet}
+                              value={Diet}
                               onChange={(e) => setDiet(e.target.value)}
                               style={{
                                 border: "1px solid #0D66D0",
@@ -1529,28 +1551,29 @@ const RiskAssessment = () => {
                         }}
                       >
                         <OutputCard
-                          title={"Predicion"}
-                          prediction={prediction}
+                          title={"Predicions"}
+                          prediction={`${Prediction * 10}%`}
                         />
                         <OutputCard
                           title={"Interpretation"}
                           body={Interpretation}
                         />
-                        <OutputCard title={"Advice"} body={`${Advice}%`} />
+                        <OutputCard title={"Advice"} body={Advice} />
                       </Box>
                     </Box>
                   )}
                   {activeStep === 4 && (
-                    <>
+                    <Box sx={{
+                     
+                    }}>
                       <OutputCard
-                        fitness_title={"Ftiness Plan"}
+                        // fitness_title={"Ftiness Plan"}
                         diet_title={"Diet Plan"}
-                        diet={dietPlan}
-                        fitness={
-                          "Lorem ietur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequatLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
-                        }
+                        diet={Diet}
+                      //   fitness={
+                      //     fitness   }
                       />
-                    </>
+                    </Box>
                   )}
                 </Box>
               </Box>
@@ -1559,9 +1582,10 @@ const RiskAssessment = () => {
           <Box
             flex={0.5}
             sx={{
+
               marginTop: "55px",
               marginLeft: "15px",
-              display: isNotMobile ? "flex" : "none",
+              display: isNotMobile ? "none" : "none",
             }}
           >
             <Box

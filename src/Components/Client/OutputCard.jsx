@@ -42,7 +42,7 @@ const OutputCard = ({
         padding: "5px 10px",
         borderRadius: "5px",
         background: "#FFF",
-        marginBottom: "8px",
+        marginBottom: "2px",
       }}
     >
       {title && <StyledTypo>{title}</StyledTypo>}
@@ -95,10 +95,12 @@ const OutputCard = ({
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
+          marginBottom:"10px"
         }}
       >
         {diet && diet_title && (
-          <Box>
+          <Box sx={{
+          }}>
             <StyledTypo>{diet_title}</StyledTypo>
             <StyledTypo
               flex={1}
