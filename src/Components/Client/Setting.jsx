@@ -7,9 +7,23 @@ import {
   Paper,
   TextField,
   Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  ListItemText,
 } from "@mui/material";
-
+import Cookies from "js-cookie";
+import { AccountCircle } from "@mui/icons-material";
 const Setting = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
   const initialUserData = {
     first_name: "John",
     last_name: "Doe",
@@ -55,6 +69,11 @@ const Setting = () => {
     setEditMode(false);
     setPasswordEditMode(false);
   };
+  const handleLogout = () => {
+    localStorage.clear();
+    Cookies.remove("token");
+    window.location.href = "/login";
+  };
 
   return (
     <Stack sx={{ width: "84%" }}>
@@ -78,9 +97,29 @@ const Setting = () => {
               Account Settings
             </Typography>
             {!editMode && (
-              <Button variant="outlined" color="info" onClick={handleEdit}>
-                Edit
-              </Button>
+              <Box>
+                <Button variant="outlined" color="info" onClick={handleEdit} sx={{ mr: 2 }}>
+                  Edit
+                </Button>
+                <IconButton
+                  aria-controls="user-menu"
+                  aria-haspopup="true"
+                  onClick={handleMenuClick}
+                >
+                  <AccountCircle color="primary" fontSize="large" />
+                </IconButton>
+                <Menu
+                  id="user-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleMenuClose}
+                >
+                  <MenuItem onClick={handleLogout}>
+                    <ListItemText primary="Logout" />
+                  </MenuItem>
+                </Menu>
+              </Box>
             )}
             {editMode ? (
               <Box>
@@ -230,6 +269,19 @@ const Setting = () => {
             </Grid>
           )}
         </Paper>
+      </Stack>
+      <Stack
+        sx={{
+          p: 2,
+          mt: 2,
+          display: "flex",
+          justifyContent: "center",
+          zIndex: 2,
+        }}
+      >
+        <Button variant="outlined" color="error" onClick={handleLogout}>
+          Logout
+        </Button>
       </Stack>
     </Stack>
   );

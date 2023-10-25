@@ -1,6 +1,6 @@
 import { FileCopy, Mic, Send } from "@mui/icons-material";
 import { Card, IconButton, Paper, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
 import axios from "axios";

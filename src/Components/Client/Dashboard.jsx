@@ -1,11 +1,19 @@
-import { ArrowUpward, MoreVert } from "@mui/icons-material";
-import { Box, Button, Card, Stack, Typography } from "@mui/material";
+import { ArrowUpward, LiveHelp, MoreVert } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Card,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import PieCharts from "./PieChart";
 import BarMixChart from "./BarMixChart";
+import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
+  const navigate = useNavigate();
   return (
-    <Stack sx={{width:"84%"}}>
+    <Stack sx={{ width: "84%" }}>
       <Stack
         sx={{ background: "#192655", height: "10dvh" }}
         alignItems={"center"}
@@ -118,6 +126,22 @@ const Dashboard = () => {
               </Stack>
               <PieCharts />
             </Card>
+            <Button
+            variant="contained"
+              sx={{
+                position: "absolute",
+                right: "50px",
+                border: "1px solid #FFFFFF",
+                background:"#16C2D5",
+                cursor: "pointer",
+                "&:hover": { border: "1px solid #16C2D5" },
+                padding: 1,
+              }}
+              onClick={() => navigate("/faq")}
+            >
+              <LiveHelp />
+              <Typography>FQA's</Typography>
+            </Button>
           </Stack>
           <Stack sx={{ width: "60%", height: "50dvh" }}>
             <Stack

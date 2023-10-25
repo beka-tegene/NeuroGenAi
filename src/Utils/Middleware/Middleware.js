@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call,  takeLatest } from "redux-saga/effects";
 import { toast } from "react-toastify";
 import { setLoginData, setRegisterData } from "../Store/AuthStore";
 import { Login, SignUp } from "../API/AuthAPI";

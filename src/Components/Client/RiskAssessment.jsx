@@ -6,7 +6,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import PersonalInformation from "./RiskAssesment/PersonalInformation";
@@ -162,7 +162,7 @@ const RiskAssessment = () => {
               bgcolor: "background.default",
             }}
           >
-            <Typography>{steps[activeStep].label}</Typography>
+            <Typography variant="h5" color={"#16C2D5"} fontWeight={"bold"}>{steps[activeStep].label}</Typography>
           </Paper>
           <Box sx={{ width: "100%", p: 2 }}>
             {steps[activeStep].description}
