@@ -135,7 +135,7 @@ const Sidebar = () => {
             <List component="div" disablePadding>
               <ListItemButton
                 sx={{ pl: 4, "&:hover": { background: "#16C2D5" } }}
-                onClick={() => navigate("/help-guide")}
+                onClick={() => navigate("/faq")}
               >
                 <ListItemIcon>
                   <LiveHelp sx={{ color: "#FFFFFF" }} />
