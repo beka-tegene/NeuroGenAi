@@ -24,13 +24,14 @@ const Setting = () => {
   };
 
   const initialPasswordData = {
-    password: "********",
-    confirm_password: "********",
+    password: "Pa$$w0rd!",
+    confirm_password: "Pa$$w0rd!",
   };
 
   const [userData, setUserData] = useState({ ...initialUserData });
   const [passwordData, setPasswordData] = useState({ ...initialPasswordData });
-
+  console.log(userData);
+  console.log(passwordData);
   const [editMode, setEditMode] = useState(false);
   const [passwordEditMode, setPasswordEditMode] = useState(false);
 
@@ -76,7 +77,7 @@ const Setting = () => {
             <Typography variant="h5" sx={{ mb: 2, fontWeight: "bold" }}>
               Account Settings
             </Typography>
-            {!editMode  && (
+            {!editMode && (
               <Button variant="outlined" color="info" onClick={handleEdit}>
                 Edit
               </Button>
@@ -135,7 +136,7 @@ const Setting = () => {
                       )
                       .join(" ")}
                   </Typography>
-                  <Typography variant="body1" sx={{ mt: 1 }} >
+                  <Typography variant="body1" sx={{ mt: 1 }}>
                     {userData[field]}
                   </Typography>
                 </Grid>
@@ -152,13 +153,13 @@ const Setting = () => {
             <Typography variant="h5" sx={{ mb: 2, fontWeight: "bold" }}>
               Password Settings
             </Typography>
-            { !passwordEditMode && (
+            {!passwordEditMode && (
               <Button
                 variant="outlined"
                 color="info"
                 onClick={handlePasswordEdit}
               >
-                Edit Password
+                Edit
               </Button>
             )}
             {passwordEditMode ? (
@@ -216,21 +217,16 @@ const Setting = () => {
             </Grid>
           ) : (
             <Grid container spacing={2}>
-              {Object.keys(passwordData).map((field) => (
-                <Grid item xs={12} sm={6} key={field}>
-                  <Typography variant="body1" fontWeight={"bold"}>
-                    {field
-                      .split("_")
-                      .map(
-                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                      )
-                      .join(" ")}
-                  </Typography>
-                  <Typography variant="body1" sx={{ mt: 1 }}>
-                    {passwordData[field]}
-                  </Typography>
-                </Grid>
-              ))}
+              {/* {Object.keys(passwordData).map((field) => ( */}
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1" fontWeight={"bold"}>
+                  Password
+                </Typography>
+                <Typography variant="body1" sx={{ mt: 1 }}>
+                  {passwordData.password}
+                </Typography>
+              </Grid>
+              {/* ))} */}
             </Grid>
           )}
         </Paper>
