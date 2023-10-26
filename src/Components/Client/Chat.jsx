@@ -45,6 +45,7 @@ const Chat = () => {
     setUserMessages(newUserMessages);
     const token = Cookies.get("token");
     const decodedToken = jwt_decode(token);
+    console.log(decodedToken);
     const userId = decodedToken.userId;
     try {
       const response = await axios.post(

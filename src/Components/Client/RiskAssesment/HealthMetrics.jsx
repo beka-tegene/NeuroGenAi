@@ -287,9 +287,9 @@ const HealthMetrics = ({ onDataUpdate }) => {
               value={sleepPattern}
               onChange={handleSleepPatternChange}
             >
-              <MenuItem value="8-hours">8 hours</MenuItem>
-              <MenuItem value="8-4-hours">8 - 4 hours</MenuItem>
-              <MenuItem value="less-than-4-hours">Less than 4 hours</MenuItem>
+              <MenuItem value="good">8 hours</MenuItem>
+              <MenuItem value="moderate">4 - 8 hours</MenuItem>
+              <MenuItem value="bad">Less than 4 hours</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -297,14 +297,14 @@ const HealthMetrics = ({ onDataUpdate }) => {
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <FormControl fullWidth required>
-            <FormLabel>Alcohol Concession</FormLabel>
+            <FormLabel>Alcohol Consumption</FormLabel>
             <RadioGroup
               name="alcohol-concession-group"
               value={alcoholConcession}
               onChange={handleAlcoholConcessionChange}
             >
-              <FormControlLabel value="1" control={<Radio />} label="Yes" />
-              <FormControlLabel value="0" control={<Radio />} label="No" />
+              <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+              <FormControlLabel value="no" control={<Radio />} label="No" />
             </RadioGroup>
           </FormControl>
         </Grid>

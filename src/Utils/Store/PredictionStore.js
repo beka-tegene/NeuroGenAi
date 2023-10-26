@@ -2,14 +2,29 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   InputStrokeRecommendations: [],
+  InputGetStrokeRecommendations: [],
   InputStrokepredictor: [],
+  outputStrokepredictor: [],
+  outputStrokeRecommendations: [],
+  outputGetStrokeRecommendations: [],
 };
 
 const PredictionStore = createSlice({
   name: "prediction",
   initialState: initialState,
   reducers: {
-    setStrokeRecommendationsData(state) {},
+    getStrokeRecommendationsData(state, action) {
+      state.outputGetStrokeRecommendations = action.payload;
+    },
+    getStrokeRecommendations(state, action) {
+      const newData = action.payload;
+      state.InputGetStrokeRecommendations.push({
+        id: newData.userId,
+      });
+    },
+    setStrokeRecommendationsData(state, action) {
+      state.outputStrokeRecommendations = action.payload;
+    },
     setStrokeRecommendations(state, action) {
       const newData = action.payload;
       state.InputStrokeRecommendations.push({
@@ -38,10 +53,13 @@ const PredictionStore = createSlice({
         ],
       });
     },
-    setStrokepredictorData(state) {},
+    setStrokepredictorData(state, action) {
+      state.outputStrokepredictor = action.payload;
+    },
     setStrokepredictor(state, action) {
       const newData = action.payload;
       state.InputStrokepredictor.push({
+        userId: newData.userId,
         data: [
           {
             age: newData.age,
@@ -66,6 +84,8 @@ export const {
   setStrokeRecommendations,
   setStrokepredictorData,
   setStrokepredictor,
+  getStrokeRecommendationsData,
+  getStrokeRecommendations,
 } = PredictionStore.actions;
 
 export default PredictionStore.reducer;

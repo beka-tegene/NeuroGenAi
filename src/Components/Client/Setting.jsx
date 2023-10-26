@@ -11,6 +11,7 @@ import {
   Menu,
   MenuItem,
   ListItemText,
+  Divider,
 } from "@mui/material";
 import Cookies from "js-cookie";
 import { AccountCircle } from "@mui/icons-material";
@@ -30,7 +31,7 @@ const Setting = () => {
     gender: "Male",
     date_of_birth: "1990-01-01",
     age: 33,
-    email: "john@example.com",
+
     phone_number: "123-456-7890",
     country: "USA",
     city: "New York",
@@ -40,6 +41,7 @@ const Setting = () => {
   const initialPasswordData = {
     password: "Pa$$w0rd!",
     confirm_password: "Pa$$w0rd!",
+    email: "john@example.com",
   };
 
   const [userData, setUserData] = useState({ ...initialUserData });
@@ -51,10 +53,12 @@ const Setting = () => {
 
   const handleEdit = () => {
     setEditMode(true);
+    setAnchorEl(null);
   };
 
   const handlePasswordEdit = () => {
     setPasswordEditMode(true);
+    setAnchorEl(null);
   };
 
   const handleSave = () => {
@@ -93,14 +97,14 @@ const Setting = () => {
             justifyContent="space-between"
             alignItems="center"
           >
-            <Typography variant="h5" sx={{ mb: 2, fontWeight: "bold" }}>
-              Account Settings
+            <Typography
+              variant="h5"
+              sx={{ mb: 2, fontWeight: "bold", color: "#16C2D5" }}
+            >
+              Login and Security
             </Typography>
-            {!editMode && (
+            {!passwordEditMode && (
               <Box>
-                <Button variant="outlined" color="info" onClick={handleEdit} sx={{ mr: 2 }}>
-                  Edit
-                </Button>
                 <IconButton
                   aria-controls="user-menu"
                   aria-haspopup="true"
@@ -115,11 +119,137 @@ const Setting = () => {
                   open={Boolean(anchorEl)}
                   onClose={handleMenuClose}
                 >
+                  <MenuItem onClick={handlePasswordEdit}>
+                    <ListItemText primary="Update Security" />
+                  </MenuItem>
                   <MenuItem onClick={handleLogout}>
                     <ListItemText primary="Logout" />
                   </MenuItem>
                 </Menu>
               </Box>
+            )}
+            {passwordEditMode ? (
+              <Box>
+                <Button
+                  variant="outlined"
+                  color="success"
+                  onClick={handleSave}
+                  sx={{ mr: 2 }}
+                >
+                  Save
+                </Button>
+                <Button variant="outlined" color="error" onClick={handleCancel}>
+                  Cancel
+                </Button>
+              </Box>
+            ) : null}
+          </Stack>
+          {passwordEditMode ? (
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1">Email</Typography>
+                <TextField
+                  type="email"
+                  variant="outlined"
+                  fullWidth
+                  size="small"
+                  value={passwordData.email}
+                  onChange={(e) =>
+                    setPasswordData({
+                      ...passwordData,
+                      email: e.target.value,
+                    })
+                  }
+                  sx={{ mb: 2 }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1">Old Password</Typography>
+                <TextField
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  size="small"
+                  value={passwordData.password}
+                  onChange={(e) =>
+                    setPasswordData({
+                      ...passwordData,
+                      password: e.target.value,
+                    })
+                  }
+                  sx={{ mb: 2 }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1">New Password</Typography>
+                <TextField
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  size="small"
+                  onChange={(e) =>
+                    setPasswordData({
+                      ...passwordData,
+                      password: e.target.value,
+                    })
+                  }
+                  sx={{ mb: 2 }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1">Confirm New Password</Typography>
+                <TextField
+                  type="password"
+                  variant="outlined"
+                  fullWidth
+                  size="small"
+                  onChange={(e) =>
+                    setPasswordData({
+                      ...passwordData,
+                      confirm_password: e.target.value,
+                    })
+                  }
+                  sx={{ mb: 2 }}
+                />
+              </Grid>
+            </Grid>
+          ) : (
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1" fontWeight={"bold"}>
+                  Email
+                </Typography>
+                <Typography variant="body1" sx={{ mt: 1 }}>
+                  {passwordData.email}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1" fontWeight={"bold"}>
+                  Password
+                </Typography>
+                <Typography variant="body1" sx={{ mt: 1 }}>
+                  {passwordData.password}
+                </Typography>
+              </Grid>
+            </Grid>
+          )}
+        </Paper>
+        <Paper elevation={3} sx={{ width: "80%", p: 2, my: 2 }}>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography
+              variant="h5"
+              sx={{ mb: 2, fontWeight: "bold", color: "#16C2D5" }}
+            >
+              Personal Information
+            </Typography>
+            {!editMode && (
+              <Button variant="outlined" color="info" onClick={handleEdit}>
+                Edit
+              </Button>
             )}
             {editMode ? (
               <Box>
@@ -178,110 +308,12 @@ const Setting = () => {
                   <Typography variant="body1" sx={{ mt: 1 }}>
                     {userData[field]}
                   </Typography>
+                  <Divider sx={{ mt: 1 }} />
                 </Grid>
               ))}
             </Grid>
           )}
         </Paper>
-        <Paper elevation={3} sx={{ width: "80%", p: 2, my: 2 }}>
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <Typography variant="h5" sx={{ mb: 2, fontWeight: "bold" }}>
-              Password Settings
-            </Typography>
-            {!passwordEditMode && (
-              <Button
-                variant="outlined"
-                color="info"
-                onClick={handlePasswordEdit}
-              >
-                Edit
-              </Button>
-            )}
-            {passwordEditMode ? (
-              <Box>
-                <Button
-                  variant="outlined"
-                  color="success"
-                  onClick={handleSave}
-                  sx={{ mr: 2 }}
-                >
-                  Save
-                </Button>
-                <Button variant="outlined" color="error" onClick={handleCancel}>
-                  Cancel
-                </Button>
-              </Box>
-            ) : null}
-          </Stack>
-          {passwordEditMode ? (
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body1">Password</Typography>
-                <TextField
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  size="small"
-                  value={passwordData.password}
-                  onChange={(e) =>
-                    setPasswordData({
-                      ...passwordData,
-                      password: e.target.value,
-                    })
-                  }
-                  sx={{ mb: 2 }}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body1">Confirm Password</Typography>
-                <TextField
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  size="small"
-                  value={passwordData.confirm_password}
-                  onChange={(e) =>
-                    setPasswordData({
-                      ...passwordData,
-                      confirm_password: e.target.value,
-                    })
-                  }
-                  sx={{ mb: 2 }}
-                />
-              </Grid>
-            </Grid>
-          ) : (
-            <Grid container spacing={2}>
-              {/* {Object.keys(passwordData).map((field) => ( */}
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body1" fontWeight={"bold"}>
-                  Password
-                </Typography>
-                <Typography variant="body1" sx={{ mt: 1 }}>
-                  {passwordData.password}
-                </Typography>
-              </Grid>
-              {/* ))} */}
-            </Grid>
-          )}
-        </Paper>
-      </Stack>
-      <Stack
-        sx={{
-          p: 2,
-          mt: 2,
-          display: "flex",
-          justifyContent: "center",
-          zIndex: 2,
-        }}
-      >
-        <Button variant="outlined" color="error" onClick={handleLogout}>
-          Logout
-        </Button>
       </Stack>
     </Stack>
   );

@@ -6,7 +6,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import PersonalInformation from "./RiskAssesment/PersonalInformation";
@@ -19,6 +19,8 @@ import {
 } from "../../Utils/Store/PredictionStore";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
+import Result from "./RiskAssesment/Result";
+import SecondResult from "./RiskAssesment/SecondResult";
 const RiskAssessment = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
@@ -58,7 +60,11 @@ const RiskAssessment = () => {
     },
     {
       label: "Result",
-      description: <Typography>{collectedData.bmi}</Typography>,
+      description: <Result />,
+    },
+    {
+      label: "Result",
+      description: <SecondResult />,
     },
   ];
 
@@ -78,8 +84,6 @@ const RiskAssessment = () => {
   const SubmitHandler = (e) => {
     dispatch(
       setStrokeRecommendations({
-        userId,
-        exposure_percent: 40,
         weight: collectedData.weight,
         height: collectedData.height,
         history_of_stroke: collectedData.history_of_stroke,
@@ -102,6 +106,9 @@ const RiskAssessment = () => {
             gender: collectedData.gender,
           },
         ],
+        alcohol_consumption: collectedData.alcoholConcession,
+        stress_levels: collectedData.stressLevel,
+        sleep_patterns: collectedData.sleepPattern,
       })
     );
     dispatch(
@@ -162,7 +169,9 @@ const RiskAssessment = () => {
               bgcolor: "background.default",
             }}
           >
-            <Typography variant="h5" color={"#16C2D5"} fontWeight={"bold"}>{steps[activeStep].label}</Typography>
+            <Typography variant="h5" color={"#16C2D5"} fontWeight={"bold"}>
+              {steps[activeStep].label}
+            </Typography>
           </Paper>
           <Box sx={{ width: "100%", p: 2 }}>
             {steps[activeStep].description}
@@ -173,7 +182,7 @@ const RiskAssessment = () => {
             position="static"
             activeStep={activeStep}
             nextButton={
-              activeStep !== maxSteps - 1 && activeStep !== maxSteps - 2 ? (
+              activeStep !== maxSteps - 3 ? (
                 <Button
                   size="small"
                   onClick={handleNext}
@@ -187,7 +196,7 @@ const RiskAssessment = () => {
                   )}
                 </Button>
               ) : (
-                activeStep !== maxSteps - 1 && (
+                activeStep === maxSteps - 3 && (
                   <Button
                     size="small"
                     variant="outlined"
@@ -202,7 +211,7 @@ const RiskAssessment = () => {
               )
             }
             backButton={
-              activeStep !== maxSteps - 1 && (
+              activeStep !== maxSteps - 2 && (
                 <Button
                   size="small"
                   onClick={handleBack}

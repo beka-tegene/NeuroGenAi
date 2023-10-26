@@ -192,7 +192,7 @@ const Sidebar = () => {
           bottom: "30px",
           right: "30px",
           zIndex: 5,
-          background: "#192655",
+          background: "#16C2D5",
           color: "white",
           "&:hover": { color: "#192655" },
         }}
