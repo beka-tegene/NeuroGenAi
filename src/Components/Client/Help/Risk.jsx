@@ -209,6 +209,7 @@ const Risk = () => {
                                 src={uniqueItem.img}
                                 width={"700px"}
                                 height={"400px"}
+                                alt="data"
                               />
                             )}
                             <h3>
