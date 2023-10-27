@@ -22,7 +22,7 @@ export const UpdateUser = async (data) => {
       },
     }
   );
-  // console.log(useData);
+  console.log(useData);
   window.location.reload(true)
 };
 

@@ -1,12 +1,12 @@
 import React from 'react'
-import Layout from '../Components/Client/Layout'
 import Chat from '../Components/Client/Chat'
+import ChatSidebar from '../Components/Client/ChatLayout/ChatSidebar'
 
 const ChatUser = () => {
   return (
-    <Layout>
+    <ChatSidebar>
       <Chat />
-    </Layout>
+    </ChatSidebar>
   )
 }
 
