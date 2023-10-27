@@ -524,16 +524,12 @@ const FAQ = () => {
             >
               <Typography
                 sx={{
-                  color: "#16C2D5",
                   fontFamily: "Poppins",
-                  fontSize: "30px",
-                  fontStyle: "normal",
+                  fontSize: "20px",
                   fontWeight: "600",
-                  marginBottom: "10px",
                 }}
               >
-                General <span style={{ color: "red" }}>Questions</span> and{" "}
-                <span style={{ color: "red" }}>Answers</span> on Stroke
+                General Questions and Answers on Stroke
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -580,16 +576,12 @@ const FAQ = () => {
             >
               <Typography
                 sx={{
-                  color: "#16C2D5",
                   fontFamily: "Poppins",
-                  fontSize: "30px",
-                  fontStyle: "normal",
+                  fontSize: "20px",
                   fontWeight: "600",
-                  marginBottom: "10px",
                 }}
               >
-                <span style={{ color: "red" }}>Questions</span> and
-                <span style={{ color: "red" }}>Answers</span> on Pre-Stroke
+                Questions and Answers on Pre-Stroke
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -636,16 +628,12 @@ const FAQ = () => {
             >
               <Typography
                 sx={{
-                  color: "#16C2D5",
                   fontFamily: "Poppins",
-                  fontSize: "30px",
-                  fontStyle: "normal",
+                  fontSize: "20px",
                   fontWeight: "600",
-                  marginBottom: "10px",
                 }}
               >
-                <span style={{ color: "red" }}>Questions</span> and
-                <span style={{ color: "red" }}>Answers</span> on Post-Stroke
+                Questions and Answers on Post-Stroke
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -692,17 +680,12 @@ const FAQ = () => {
             >
               <Typography
                 sx={{
-                  color: "#16C2D5",
                   fontFamily: "Poppins",
-                  fontSize: "30px",
-                  fontStyle: "normal",
+                  fontSize: "20px",
                   fontWeight: "600",
-                  marginBottom: "10px",
                 }}
               >
-                Learn more about
-                <span style={{ color: "red" }}> Brain</span> and
-                <span style={{ color: "red" }}> Heart</span>
+                Learn more about Brain and Heart
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -749,17 +732,12 @@ const FAQ = () => {
             >
               <Typography
                 sx={{
-                  color: "#16C2D5",
                   fontFamily: "Poppins",
-                  fontSize: "30px",
-                  fontStyle: "normal",
+                  fontSize: "20px",
                   fontWeight: "600",
-                  marginBottom: "10px",
                 }}
               >
-                Learn more about your
-                <span style={{ color: "red" }}> Health</span> and
-                <span style={{ color: "red" }}> Healthy Life style</span>
+                Learn more about your Health and Healthy Life style
               </Typography>
             </AccordionSummary>
             <AccordionDetails>

@@ -54,8 +54,8 @@ const Dashboard = () => {
           // sx={{ height: "75dvh" }}
           gap={5}
         >
-          <Stack direction={"row"} gap={10}>
-            <Stack gap={5}>
+          <Stack direction={"row"} gap={10} alignItems={"center"}>
+            <Stack gap={5} >
               <Card
                 sx={{
                   display: "flex",

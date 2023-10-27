@@ -55,6 +55,7 @@ const Chat = () => {
     const decodedToken = jwt_decode(token);
     console.log(decodedToken);
     const userId = decodedToken.userId;
+    
     try {
       const response = await axios.post(
         "http://localhost:5000/api/v1/medical/medical-chat",
@@ -63,18 +64,26 @@ const Chat = () => {
           userId,
         }
       );
+     
       const responseData = response.data.response;
 
       newUserMessages.push({
         message: formatText(responseData),
         isQuestion: false,
       });
+  
       setUserMessages(newUserMessages);
+  
+      // Scroll to the bottom of the chat after adding a new message
+      const chatContainer = document.getElementById("chat-container");
+      chatContainer.scrollTop = chatContainer.scrollHeight;
     } catch (error) {
       console.error("Request Error:", error);
     }
+  
     setQuestion("");
   };
+  
 
   return (
     <Stack sx={{ width: "84%" }}>
