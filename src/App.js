@@ -12,9 +12,9 @@ import HistoryOfChat from "./Pages/HistoryOfChat";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 function App() {
-  const token = Cookies.get("token");
-  const decodedToken = jwt_decode(token);
-  const role = decodedToken.role;
+  const token = Cookies.get("token") || "guest";
+  const decodedToken = token === "guest" ? "guest" : jwt_decode(token);
+  const role = decodedToken.role || "guest";
   console.log(role);
   return (
     <Routes>
