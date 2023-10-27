@@ -1,5 +1,12 @@
 import { FileCopy, Mic, Send } from "@mui/icons-material";
-import { Card, IconButton, Paper, Stack, Typography } from "@mui/material";
+import {
+  Card,
+  IconButton,
+  ImageListItem,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
@@ -7,6 +14,7 @@ import axios from "axios";
 import parse from "html-react-parser";
 import { getChatHistory } from "../../../Utils/Store/PredictionStore";
 import { useDispatch, useSelector } from "react-redux";
+import logo from "../../../Image/image 14.png";
 const ChatHistory = () => {
   const [userMessages, setUserMessages] = useState([]);
   const [question, setQuestion] = useState("");
@@ -62,29 +70,32 @@ const ChatHistory = () => {
       for (let i = 0; i <= chatHistory.chatMessages.length - 1; i++) {
         const question = chatHistory.chatMessages[i]?.question;
         const response = chatHistory.chatMessages[i]?.response;
-  
+
         if (question) {
           newMessages.push({ message: formatText(question), isQuestion: true });
         }
-  
+
         if (response) {
-          newMessages.push({ message: formatText(response), isQuestion: false });
+          newMessages.push({
+            message: formatText(response),
+            isQuestion: false,
+          });
         }
       }
       setUserMessages(newMessages);
     }
   }, [chatHistory]);
-  
+
   function formatText(text) {
     // Replace **...** with <strong>...</strong>
-    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  
+    text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
     // Replace *...* with <li>...</li>
     text = text.replace(/\* (.*?)\n/g, `<li>$1</li>`);
-  
+
     return text;
   }
-  
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -133,7 +144,7 @@ const ChatHistory = () => {
         </Typography>
       </Stack>
       <Stack
-      ref={chatContainerRef}
+        ref={chatContainerRef}
         sx={{
           height: "80vh",
           overflowY: "scroll",
@@ -175,9 +186,34 @@ const ChatHistory = () => {
                   width: "100%",
                 }}
               >
-                <Typography sx={{ width: "95%" }}>
-                  {parse(message.message)}
-                </Typography>
+                <Stack
+                  direction={"row"}
+                  alignItems={"flex-start"}
+                  justifyContent={"flex-start"}
+                  gap={2}
+                  sx={{pt:2}}
+                >
+                  {!message.isQuestion && (
+                    <ImageListItem
+                      sx={{
+                        maxWidth: "50px",
+                        minWidth: "50px",
+                        maxHeight: "50px",
+                        minHeight: "50px",
+                        borderRadius: "50%",
+                        border: "0.5px solid #16C2D5",
+                        display:"flex",
+                        alignItems:"center",
+                        justifyContent:"center"
+                      }}
+                    >
+                      <img src={logo} alt="logo" style={{borderRadius:"50%"}}/>
+                    </ImageListItem>
+                  )}
+                  <Typography sx={{ width: "95%" }}>
+                    {parse(message.message)}
+                  </Typography>
+                </Stack>
                 {!message.isQuestion && (
                   <IconButton
                     sx={{
