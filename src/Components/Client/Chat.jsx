@@ -57,14 +57,14 @@ const Chat = () => {
       );
       const responseData = response.data.response;
       const formattedResponse = responseData.replace(
-        /\*\*(.*?)\*\*/g,
+        /\*([^*]+)\*/g,
         "<strong>$1</strong><br>"
       );
       // setResponse(formattedResponse);
       newUserMessages.push({ message: formattedResponse, isQuestion: false });
       setUserMessages(newUserMessages);
     } catch (error) {
-      console.error("Request Error:", error);
+      console.error("Request Error:", error);   
     }
     setQuestion("");
   };
