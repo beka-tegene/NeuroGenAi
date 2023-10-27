@@ -8,6 +8,7 @@ import ChatUser from "./Pages/ChatUser";
 import HelpUser from "./Pages/HelpUser";
 import SettingUser from "./Pages/SettingUser";
 import FAQUser from "./Pages/FAQUser";
+import HistoryOfChat from "./Pages/HistoryOfChat";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/help-guide" element={<HelpUser />} />
       <Route path="/faq" element={<FAQUser />} />
       <Route path="/setting" element={<SettingUser />} />
+      <Route path="/chat-history" element={<HistoryOfChat />} />
     </Routes>
   );
 }

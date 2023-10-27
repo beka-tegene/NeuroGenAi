@@ -8,12 +8,14 @@ import {
   Strokepredictor,
 } from "../API/PredictionApi";
 import {
+  getChatHistoryData,
   getStrokeRecommendationsData,
   setStrokeRecommendationsData,
   setStrokepredictorData,
 } from "../Store/PredictionStore";
 import { getUserData, setUpdateUserData } from "../Store/UserStore";
 import { UpdateUser, getUser } from "../API/UserApi";
+import { getMedicalchathistory } from "../API/MedicalApi";
 
 export function* watchFetchNeuro() {
   yield takeLatest("auth/setRegister", fetchSetRegister);
@@ -21,6 +23,7 @@ export function* watchFetchNeuro() {
   yield takeLatest("user/getUser", fetchGetUser);
   yield takeLatest("user/setUpdateUser", fetchSetUserUpdate);
   yield takeLatest("prediction/setStrokepredictor", fetchSetStrokepredictor);
+  yield takeLatest("prediction/getChatHistory", fetchGetChatHistory);
   yield takeLatest(
     "prediction/getStrokeRecommendations",
     fetchGetStrokeRecommendations
@@ -97,6 +100,16 @@ function* fetchSetUserUpdate(action) {
   try {
     yield call(UpdateUser, action.payload.data);
     yield setUpdateUserData();
+  } catch (error) {
+    toast.error(error.response.data.msg);
+    console.error("Saga Error:", error);
+  }
+}
+
+function* fetchGetChatHistory(action) {
+  try {
+    const Data = yield call(getMedicalchathistory, action.payload.data);
+    yield put(getChatHistoryData(Data));
   } catch (error) {
     toast.error(error.response.data.msg);
     console.error("Saga Error:", error);

@@ -28,7 +28,7 @@ const ChatLayout = () => {
   const isDashboardActive = useMatch("/dashboard");
   const isRiskAssessmentActive = useMatch("/risk-assessment");
   const isChatBotActive = useMatch("/chat-bot");
-  const isHelpGuideActive = useMatch("/help-guide");
+  const isHelpGuideActive = useMatch("/chat-history");
   const handleClick = () => {
     setOpen(!open);
   };
@@ -152,10 +152,10 @@ const ChatLayout = () => {
                   "&:hover": { background: "#16C2D5" },
                   ...(isHelpGuideActive && activeListItemButtonStyle),
                 }}
-                onClick={() => navigate("/help-guide")}
+                onClick={() => navigate("/chat-history")}
               >
                 <ListItemText
-                  primary="Help And Guide"
+                  primary="Chat History"
                   sx={{ color: "#FFFFFF" }}
                 />
               </ListItemButton>
