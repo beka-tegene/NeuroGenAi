@@ -173,7 +173,7 @@ const Dashboard = () => {
               onClick={() => navigate("/faq")}
             >
               <LiveHelp />
-              <Typography>FQA's</Typography>
+              <Typography>FAQ's</Typography>
             </Button>
           </Stack>
           <Stack sx={{ width: "60%", height: "50dvh" }}>
