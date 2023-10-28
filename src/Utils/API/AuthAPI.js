@@ -50,3 +50,39 @@ export const Login = async (data) => {
     console.error("Login Error:", error);
   }
 };
+
+export const ForgotPassword = async (data) => {
+  const useData = await axios.post(
+    "http://localhost:5000/api/v1/auth/forgot-password",
+    data,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  console.log(useData);
+  if (useData.status === 201) {
+    window.location.href = "/login";
+  } else {
+    window.location.href = "/register";
+  }
+};
+
+export const RestPassword= async (data) => {
+  const useData = await axios.post(
+    "http://localhost:5000/api/v1/auth/register",
+    data,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  console.log(useData);
+  if (useData.status === 201) {
+    window.location.href = "/login";
+  } else {
+    window.location.href = "/register";
+  }
+};
