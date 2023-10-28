@@ -15,13 +15,16 @@ import { setLogin } from "../../Utils/Store/AuthStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 const Reset = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [OldPassword, setOldPassword] = useState();
+  const [NewPassword, setNewPassword] = useState();
+  const [ConfirmNewPassword, setConfirmNewPassword] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setLogin({ data: { email, password } }));
+    dispatch(
+      setLogin({ data: { OldPassword, NewPassword, ConfirmNewPassword } })
+    );
   };
   return (
     <Stack
@@ -89,7 +92,7 @@ const Reset = () => {
             label="Old Password"
             variant="outlined"
             type="Password"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setOldPassword(e.target.value)}
           />
         </FormControl>
         <FormControl sx={{ width: "100%" }} size="small" required>
@@ -98,7 +101,7 @@ const Reset = () => {
             label="New Password"
             variant="outlined"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setNewPassword(e.target.value)}
           />
         </FormControl>
         <FormControl sx={{ width: "100%" }} size="small" required>
@@ -107,7 +110,7 @@ const Reset = () => {
             label="Confirm Password"
             variant="outlined"
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
           />
         </FormControl>
         <Stack direction={"row"} width={"100%"} gap={1}>
