@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import hero1 from "../../Image/heroImage.png";
 import HeroImage1 from "../../Image/heroImage1.jpeg";
-import HeroImage2 from "../../Image/heroImage2.jpg";
 import HeroImage3 from "../../Image/homeImage3.png";
 
 const images = [hero1, HeroImage3, HeroImage1]; // Add your image paths here
