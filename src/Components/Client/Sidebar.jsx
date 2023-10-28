@@ -9,6 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
   Stack,
+  Tooltip,
   useMediaQuery,
 } from "@mui/material";
 import React, { useState } from "react";
@@ -235,8 +236,11 @@ const Sidebar = () => {
                 </Collapse>
               </List>
             </Stack>
+            <Tooltip title="For Emergency call to Tebita Ambulance">
 
-            {/* <IconButton
+           
+
+            <IconButton
         sx={{
           position: "fixed",
           bottom: "30px",
@@ -247,11 +251,12 @@ const Sidebar = () => {
           "&:hover": { color: "#192655" },
         }}
         onClick={() => {
-          window.location.href = "tel:911";
+          window.location.href = "tel:8035";
         }}
       >
         <Phone />
-      </IconButton> */}
+      </IconButton>
+      </Tooltip>
           </Stack>
         </>
       )}

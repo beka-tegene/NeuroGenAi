@@ -97,7 +97,7 @@ const Chat = () => {
   const isTablet = useMediaQuery("(max-width: 430px)");
   return (
     <Stack
-      sx={{ width: isTablet ? "100%" : isMobile ? "100%" : "84%", zIndex: -1 }}
+      sx={{ width: isTablet ? "100%" : isMobile ? "100%" : "84%" }}
     >
       <Stack
         sx={{ background: "#192655", height: "10dvh" }}
