@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "../../Utils/Store/AuthStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-const Login = () => {
+const Reset = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const Login = () => {
           textAlign={"center"}
           fontWeight={"bold"}
         >
-          Login here
+          Reset here
         </Typography>
         <Typography variant="h6">Welcome back you’ve been missed!</Typography>
       </Stack>
@@ -85,32 +85,31 @@ const Login = () => {
       >
         <FormControl sx={{ width: "100%" }} size="small" required>
           <TextField
-            id="email-basic"
-            label="Email"
+            id="OPassword-basic"
+            label="Old Password"
             variant="outlined"
-            type="email"
+            type="Password"
             onChange={(e) => setEmail(e.target.value)}
           />
         </FormControl>
         <FormControl sx={{ width: "100%" }} size="small" required>
           <TextField
             id="password-basic"
-            label="Password"
+            label="New Password"
             variant="outlined"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
-        <Link
-          style={{
-            textAlign: "right",
-            textDecoration: "none",
-            color: "#16C2D5",
-          }}
-          to={"/forget"}
-        >
-          Forget password
-        </Link>
+        <FormControl sx={{ width: "100%" }} size="small" required>
+          <TextField
+            id="CPassword-basic"
+            label="Confirm Password"
+            variant="outlined"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FormControl>
         <Stack direction={"row"} width={"100%"} gap={1}>
           <Button
             variant="contained"
@@ -121,22 +120,12 @@ const Login = () => {
               "&:hover": { background: "#16C2D590" },
             }}
           >
-            Sign in
+            Reset Password
           </Button>
         </Stack>
       </Paper>
-      <Link
-        to={"/register"}
-        style={{
-          textAlign: "right",
-          textDecoration: "none",
-          color: "#272727",
-        }}
-      >
-        Create new account
-      </Link>
     </Stack>
   );
 };
 
-export default Login;
+export default Reset;
