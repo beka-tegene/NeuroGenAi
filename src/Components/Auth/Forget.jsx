@@ -11,16 +11,17 @@ import React, { useState } from "react";
 import logo from "../../Image/image 14.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setLogin } from "../../Utils/Store/AuthStore";
+import { setForgotPassword } from "../../Utils/Store/AuthStore";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+
 const Forget = () => {
   const [email, setEmail] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setLogin({ data: { email } }));
+    dispatch(setForgotPassword({ data: { email } }));
   };
   return (
     <Stack
