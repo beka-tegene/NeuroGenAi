@@ -9,22 +9,26 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import logo from "../../Image/image 14.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setLogin } from "../../Utils/Store/AuthStore";
+import { setRestPassword } from "../../Utils/Store/AuthStore";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 const Reset = () => {
-  const [OldPassword, setOldPassword] = useState();
+  const urlParams = new URLSearchParams(window.location.search);
+  const email = urlParams.get("token");
+  console.log(email);
   const [NewPassword, setNewPassword] = useState();
   const [ConfirmNewPassword, setConfirmNewPassword] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(
-      setLogin({ data: { OldPassword, NewPassword, ConfirmNewPassword } })
-    );
+    if (NewPassword === ConfirmNewPassword) {
+      dispatch(setRestPassword({ data: { NewPassword, email } }));
+    } else {
+      toast.error("The password does not match");
+    }
   };
   return (
     <Stack
@@ -86,15 +90,6 @@ const Reset = () => {
         }}
         onSubmit={handleSubmit}
       >
-        <FormControl sx={{ width: "100%" }} size="small" required>
-          <TextField
-            id="OPassword-basic"
-            label="Old Password"
-            variant="outlined"
-            type="Password"
-            onChange={(e) => setOldPassword(e.target.value)}
-          />
-        </FormControl>
         <FormControl sx={{ width: "100%" }} size="small" required>
           <TextField
             id="password-basic"

@@ -26,7 +26,7 @@ function App() {
       <Route path="/register" element={<AuthRegister />} />
       <Route path="/forget" element={<Forget />} />
       <Route path="/verify" element={<Verify />} />
-      <Route path="/reset-password/:token" element={<Reset />} />
+      <Route path="/reset-password" element={<Reset />} />
 
       <Route
         path="/dashboard"
