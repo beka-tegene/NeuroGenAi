@@ -11,20 +11,23 @@ const texts = [
   {
     heading: "Welcome to Neurogen AI",
     subheading: "Empowering health care",
-    listItems: ["Personalized medical advice", "Stroke risk prediction"],
-  },
-  {
-    heading: "Welcome to Neurogen AI",
-    subheading: "Empowering health care",
     listItems: [
-      "Natural language processing for health queries",
-      "Tailored diet and exercise plans",
+      "Welcome to our cutting-edge web app dedicated to stroke prevention and management. Stroke is a serious health concern affecting millions worldwide. Our platform empowers you to take control of your health by providing a comprehensive stroke risk assessment. Through a user-friendly chatbot, we offer personalized guidance and information tailored to your unique health profile.",
     ],
   },
   {
-    heading: "Welcome to Neurogen AI",
-    subheading: "Empowering health care",
-    listItems: ["Data-driven healthcare recommendations"],
+    heading: "Fighting Stroke",
+    // subheading: "Welcome to Neurogen AI",
+    listItems: [
+      "Our web app is not just about identifying risk – it's about taking action. After your risk assessment, we deliver clear and actionable insights, along with easy-to-understand graphs and charts that track your health journey over time. We understand that stroke prevention is a journey, and we're here to guide you every step of the way.",
+    ],
+  },
+  {
+    heading: "Empowering your life with Neurogen AI",
+    // subheading: "Empowering health care",
+    listItems: [
+      "With our web app, you can turn knowledge into empowerment. Start your journey towards a healthier, stroke-free life today. Take the first step in understanding your stroke risk, receive personalized recommendations, and monitor your progress through engaging visual representations. Join us in the fight against stroke – your health is your most valuable asset, and we're here to help you protect it.",
+    ],
   },
   // Add more text variations as needed
 ];
