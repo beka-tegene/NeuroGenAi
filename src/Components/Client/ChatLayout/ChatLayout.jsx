@@ -197,7 +197,7 @@ const ChatLayout = () => {
               </Collapse>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <Typography sx={{background:"#FFFFFF"}}>Chat History</Typography>
+                  <Typography sx={{color:"#16C25c"}}>Chat History</Typography>
                   {firstArrayHistory?.map((item, index) => (
                     <ListItemButton
                       key={index} // Add a key prop
