@@ -64,6 +64,7 @@ const ChatHistory = () => {
   const chatHistory = useSelector(
     (state) => state.PredictionStore.OutputChatHistory
   );
+  console.log(chatHistory)
 
   useEffect(() => {
     if (chatHistory?.chatMessages) {

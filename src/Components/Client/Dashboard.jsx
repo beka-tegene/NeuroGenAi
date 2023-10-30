@@ -45,8 +45,8 @@ const Dashboard = () => {
         StrokePrediction.predictions[StrokePrediction.predictions.length - 2]
           .prediction) /
         StrokePrediction.predictions[StrokePrediction.predictions.length - 2]
-          .prediction) *
-      100;
+          .prediction) 
+      ;
     // The rest of your code that uses 'prediction'
   }
   const isSmallScreen = useMediaQuery("(max-width:770px)");
@@ -152,6 +152,27 @@ const Dashboard = () => {
                 <Card
                   sx={{
                     display: "flex",
+                    flexDirection: "column",
+                    p: 1,
+                    width: 250,
+                  }}
+                >
+                  <Typography
+                    fontSize={"18px"}
+                    fontWeight={"bold"}
+                    color={"#FF0000"}
+                  >
+                    Disclaimer
+                  </Typography>
+                  <Typography fontSize={"13px"} fontWeight={"bold"}>
+                    Our stroke prediction system complements, but does not
+                    replace, <b style={{ color: "#16C2D5" }}>professional</b>{" "}
+                    medical guidance.
+                  </Typography>
+                </Card>
+                <Card
+                  sx={{
+                    display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "space-between",
                     p: 1,
@@ -196,27 +217,7 @@ const Dashboard = () => {
                     </Box>
                   </Box>
                 </Card>
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    p: 1,
-                    width: 250,
-                  }}
-                >
-                  <Typography
-                    fontSize={"18px"}
-                    fontWeight={"bold"}
-                    color={"#FF0000"}
-                  >
-                    Disclaimer
-                  </Typography>
-                  <Typography fontSize={"13px"} fontWeight={"bold"}>
-                    Our stroke prediction system complements, but does not
-                    replace, <b style={{ color: "#16C2D5" }}>professional</b>{" "}
-                    medical guidance.
-                  </Typography>
-                </Card>
+                
               </Stack>
               <Card sx={{ width:isMoreSmallScreen? 260: 360, p: 2 }}>
                 <Stack
