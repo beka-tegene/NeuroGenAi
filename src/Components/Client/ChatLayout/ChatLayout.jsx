@@ -9,9 +9,10 @@ import {
   ListItemIcon,
   ListItemText,
   Stack,
+  Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../../Image/image 14.png";
 import {
   Assessment,
@@ -23,16 +24,18 @@ import {
   Menu,
   Close,
 } from "@mui/icons-material";
-import { useMatch, useNavigate } from "react-router-dom";
-
+import { useMatch, useNavigate, useParams } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import Cookies from "js-cookie";
+import { getChatHistory } from "../../../Utils/Store/PredictionStore";
+import { useDispatch, useSelector } from "react-redux";
 const ChatLayout = () => {
   const [open, setOpen] = React.useState(true);
   const [open2, setOpen2] = React.useState(true);
   const navigate = useNavigate();
   const isDashboardActive = useMatch("/dashboard");
-  const isRiskAssessmentActive = useMatch("/risk-assessment");
   const isChatBotActive = useMatch("/chat-bot");
-  const isHelpGuideActive = useMatch("/chat-history");
+  const { id } = useParams();
   const handleClick = () => {
     setOpen(!open);
   };
@@ -42,6 +45,31 @@ const ChatLayout = () => {
   const activeListItemButtonStyle = {
     backgroundColor: "#16C2D5",
   };
+  const dispatch = useDispatch();
+  const token = Cookies.get("token");
+  const decodedToken = jwt_decode(token);
+  const userId = decodedToken.userId;
+
+  useEffect(() => {
+    dispatch(getChatHistory({ data: userId }));
+  }, [dispatch, userId]);
+
+  const chatHistory = useSelector(
+    (state) => state.PredictionStore.OutputChatHistory
+  );
+  const HistoryOfChat = chatHistory?.chatMessages?.map(
+    (item) => item.conversationArrays
+  );
+  const HistoryOfChat0 = HistoryOfChat?.[0];
+
+  const firstArrayHistory = HistoryOfChat0?.map((conversation, index) => {
+    if (conversation.length > 0) {
+      const firstMessage = conversation[0];
+      return firstMessage;
+    }
+    return null;
+  });
+
   const isMobile = useMediaQuery("(max-width: 770px)");
   const [openSidebar, setOpenSidebar] = useState(isMobile);
   return (
@@ -140,22 +168,7 @@ const ChatLayout = () => {
                       sx={{ color: "#FFFFFF" }}
                     />
                   </ListItemButton>
-                  <ListItemButton
-                    sx={{
-                      pl: 4,
-                      "&:hover": { background: "#16C2D5" },
-                      ...(isRiskAssessmentActive && activeListItemButtonStyle),
-                    }}
-                    onClick={() => navigate("/risk-assessment")}
-                  >
-                    <ListItemIcon>
-                      <Assessment sx={{ color: "#FFFFFF" }} />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary="Risk Assessment"
-                      sx={{ color: "#FFFFFF" }}
-                    />
-                  </ListItemButton>
+
                   <ListItemButton
                     sx={{
                       pl: 4,
@@ -171,7 +184,7 @@ const ChatLayout = () => {
                       <Chat sx={{ color: "#FFFFFF" }} />
                     </ListItemIcon>
                     <ListItemText
-                      primary="Chat Bot"
+                      primary="New Chat"
                       sx={{ color: "#FFFFFF" }}
                     />
                     {open ? (
@@ -184,19 +197,23 @@ const ChatLayout = () => {
               </Collapse>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton
-                    sx={{
-                      pl: 4,
-                      "&:hover": { background: "#16C2D5" },
-                      ...(isHelpGuideActive && activeListItemButtonStyle),
-                    }}
-                    onClick={() => navigate("/chat-history")}
-                  >
-                    <ListItemText
-                      primary="Chat History"
-                      sx={{ color: "#FFFFFF" }}
-                    />
-                  </ListItemButton>
+                  <Typography sx={{background:"#FFFFFF"}}>Chat History</Typography>
+                  {firstArrayHistory?.map((item, index) => (
+                    <ListItemButton
+                      key={index} // Add a key prop
+                      sx={{
+                        pl: 4,
+                        "&:hover": { background: "#16C2D5" },
+                        ...(id === item._id && activeListItemButtonStyle),
+                      }}
+                      onClick={() => navigate(`/chat-history/${item._id}`)}
+                    >
+                      <ListItemText
+                        primary={`${item.text.slice(0, 20)}...`}
+                        sx={{ color: "#FFFFFF" }}
+                      />
+                    </ListItemButton>
+                  ))}
                 </List>
               </Collapse>
             </List>

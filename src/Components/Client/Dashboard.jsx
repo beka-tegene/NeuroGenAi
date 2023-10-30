@@ -36,18 +36,30 @@ const Dashboard = () => {
   const StrokePrediction = useSelector(
     (state) => state.PredictionStore.outputGetStrokeRecommendations
   );
-  const prediction = StrokePrediction?.predictions?.length;
+
+  const predictionLength = StrokePrediction?.predictions?.length;
   let present = 0;
-  if (StrokePrediction?.predictions?.length >= 2) {
-    present =
-      ((StrokePrediction.predictions[StrokePrediction.predictions.length - 1]
-        .prediction -
-        StrokePrediction.predictions[StrokePrediction.predictions.length - 2]
-          .prediction) /
-        StrokePrediction.predictions[StrokePrediction.predictions.length - 2]
-          .prediction) 
-      ;
-    // The rest of your code that uses 'prediction'
+
+  if (predictionLength >= 2) {
+    const lastPrediction =
+      StrokePrediction.predictions[predictionLength - 1].prediction;
+
+    // Calculating the sum of all predictions except the last one
+    let sumExceptLast = 0;
+    for (let i = 0; i < predictionLength - 1; i++) {
+      sumExceptLast += StrokePrediction.predictions[i].prediction;
+    }
+
+    // Calculating the mean of predictions except the last one
+    const meanExceptLast = sumExceptLast / (predictionLength - 1);
+
+    if (meanExceptLast !== 0) {
+      present = ((lastPrediction - meanExceptLast) / meanExceptLast) * 100;
+      // The rest of your code that uses 'prediction'
+    } else {
+      present =
+        "Cannot calculate percentage when the mean of other predictions is 0.";
+    }
   }
   const isSmallScreen = useMediaQuery("(max-width:770px)");
   const isMoreSmallScreen = useMediaQuery("(max-width:430px)");
@@ -66,7 +78,7 @@ const Dashboard = () => {
           Dashboard
         </Typography>
       </Stack>
-      {!prediction ? (
+      {!present ? (
         <Stack sx={{ mt: 2, p: 2 }}>
           <Stack
             alignItems={"center"}
@@ -185,7 +197,7 @@ const Dashboard = () => {
                       Total Risk Assessment
                     </Typography>
                     <Typography fontSize={"24px"} fontWeight={"bold"}>
-                      {prediction}
+                      {present}
                     </Typography>
                   </Box>
                   <Box
@@ -217,9 +229,8 @@ const Dashboard = () => {
                     </Box>
                   </Box>
                 </Card>
-                
               </Stack>
-              <Card sx={{ width:isMoreSmallScreen? 260: 360, p: 2 }}>
+              <Card sx={{ width: isMoreSmallScreen ? 260 : 360, p: 2 }}>
                 <Stack
                   direction={"row"}
                   alignItems={"center"}
@@ -254,7 +265,14 @@ const Dashboard = () => {
               </Button>
             </Stack>
             <Stack
-              sx={{ width:isMoreSmallScreen ?"100%" :isSmallScreen ? "80%" : "60%", height: "50dvh" }}
+              sx={{
+                width: isMoreSmallScreen
+                  ? "100%"
+                  : isSmallScreen
+                  ? "80%"
+                  : "60%",
+                height: "50dvh",
+              }}
             >
               <Stack
                 direction={"row"}

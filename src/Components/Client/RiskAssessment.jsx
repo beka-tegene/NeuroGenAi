@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import {
   setStrokeRecommendations,
   setStrokepredictor,
@@ -133,6 +135,7 @@ function RiskAssessment() {
         width: "84%",
       }}
     >
+       <ToastContainer />
       <Stack
         sx={{ background: "#192655", height: "10dvh" }}
         alignItems={"center"}
