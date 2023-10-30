@@ -23,6 +23,7 @@ import {
   Phone,
   Menu,
   Close,
+  ChatBubbleOutline,
 } from "@mui/icons-material";
 import { useMatch, useNavigate, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
@@ -44,6 +45,9 @@ const ChatLayout = () => {
   };
   const activeListItemButtonStyle = {
     backgroundColor: "#16C2D5",
+  };
+  const activeListItemButton = {
+    backgroundColor: "#272727",
   };
   const dispatch = useDispatch();
   const token = Cookies.get("token");
@@ -197,19 +201,22 @@ const ChatLayout = () => {
               </Collapse>
               <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <Typography sx={{color:"#16C25c"}}>Chat History</Typography>
+                  <Typography sx={{color:"#FFFFFF",p:1}}>Chat History</Typography>
                   {firstArrayHistory?.map((item, index) => (
                     <ListItemButton
                       key={index} // Add a key prop
                       sx={{
                         pl: 4,
-                        "&:hover": { background: "#16C2D5" },
-                        ...(id === item._id && activeListItemButtonStyle),
+                        "&:hover": { background: "#272727" ,color:"#16C2D5"},
+                        ...(id === item._id && activeListItemButton),
                       }}
                       onClick={() => navigate(`/chat-history/${item._id}`)}
                     >
+                      <ListItemIcon>
+                      <ChatBubbleOutline sx={{ color: "#16C2D5" }} />
+                    </ListItemIcon>
                       <ListItemText
-                        primary={`${item.text.slice(0, 20)}...`}
+                        primary={`${item.text.slice(0, 15)}...`}
                         sx={{ color: "#FFFFFF" }}
                       />
                     </ListItemButton>
