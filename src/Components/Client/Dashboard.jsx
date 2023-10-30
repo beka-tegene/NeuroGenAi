@@ -197,7 +197,7 @@ const Dashboard = () => {
                       Total Risk Assessment
                     </Typography>
                     <Typography fontSize={"24px"} fontWeight={"bold"}>
-                      {present}
+                      {predictionLength}
                     </Typography>
                   </Box>
                   <Box
